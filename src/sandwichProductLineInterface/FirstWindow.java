@@ -1,6 +1,5 @@
-package sandwichProductLine;
+package sandwichProductLineInterface;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -9,8 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class firstWindow {
+public class FirstWindow {
 
 	private JFrame frame;
 
@@ -21,7 +22,7 @@ public class firstWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					firstWindow window = new firstWindow();
+					FirstWindow window = new FirstWindow();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +34,7 @@ public class firstWindow {
 	/**
 	 * Create the application.
 	 */
-	public firstWindow() {
+	public FirstWindow() {
 		initialize();
 	}
 
@@ -80,8 +81,16 @@ public class firstWindow {
 		frame.getContentPane().add(lais);
 		
 		JButton btnStart = new JButton("START");
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				ChooseMainProducts chooseMainProductsWindow = new ChooseMainProducts();
+				chooseMainProductsWindow.setChooseMainPoductsVisible();
+			}
+		});
 		btnStart.setFont(new Font("Chilanka", Font.BOLD, 14));
 		btnStart.setBounds(337, 308, 127, 44);
 		frame.getContentPane().add(btnStart);
 	}
 }
+
