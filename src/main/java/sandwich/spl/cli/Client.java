@@ -11,6 +11,7 @@ import javax.swing.text.html.Option;
 import sandwich.shared.Category;
 import sandwich.spl.core.order.Order;
 import sandwich.spl.core.order.OrderItem;
+import sandwich.spl.core.order.OrderItemSubitem;
 import sandwich.spl.core.product.IProduct;
 import sandwich.spl.core.product.IProductItem;
 import sandwich.spl.core.product.Sandwich;
@@ -139,7 +140,7 @@ public class Client {
             if (s.equals(""+(i+1))) {
               // If product has building steps
               if (!products[i].getSteps().isEmpty()) {
-                Optional<Collection<IProductItem>> subItems = stepLoop(category, products[i], 0);
+                Optional<Collection<OrderItemSubitem>> subItems = stepLoop(category, products[i], 0);
                 if (!subItems.isPresent()) {
                   return Optional.empty();
                 }
@@ -154,7 +155,7 @@ public class Client {
     }
   }
 
-  private static Optional<Collection<IProductItem>> stepLoop(Category category, IProduct product, int step) {
+  private static Optional<Collection<OrderItemSubitem>> stepLoop(Category category, IProduct product, int step) {
     if (!isCategoryValid(category)){
       return Optional.empty();
     }
