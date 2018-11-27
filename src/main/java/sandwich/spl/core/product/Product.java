@@ -1,65 +1,39 @@
 package sandwich.spl.core.product;
 
 import java.util.ArrayList;
-import lombok.Getter;
-import lombok.Setter;
-import sandwich.shared.Category;
+import java.util.Arrays;
 
-public class Product {
+public abstract class Product implements IProduct {
 
-	protected String productName;
-	protected String productDescription;
-	protected float productPrice;
-	protected Category category;
-
-	protected ArrayList<String> productFields = new ArrayList<String>();
-
+	private String name;
+	private String description;
+	private float price;
 	
-	protected Product(String productName, String productDescription, float productPrice, Category category){
-		this.productName = productName;
-		this.productDescription = productDescription;
-		this.productPrice = productPrice;
-		this.category = category;
-		productFields.add("Nome");
-		productFields.add("Descrição");
-		productFields.add("Preço");
+	public Product(String name, String description, float price){
+		this.name = name;
+		this.description = description;
+		this.price = price;
 	}
 
-	protected Product(){}
-	
-	public String getProductName() {
-		return productName;
-	}
-	
-	public ArrayList<String> getProductFields() {
-		return productFields;
-	}
+	@Override
+	public String getName() { return name; }
+	@Override
+	public void setName(String name) { this.name = name; }
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+	@Override
+	public String getDescription() { return description; }
+	@Override
+	public void setDescription(String description) { this.description = description; }
 
-	public String getProductDescription() {
-		return productDescription;
-	}
+	@Override
+	public float getPrice() { return price; }
+	@Override
+	public void setPrice(float price) {this.price = price; }
 
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
 
-	public float getProductPrice() {
-		return productPrice;
-	}
 
-	public void setProductPrice(float productPrice) {
-		this.productPrice = productPrice;
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+	@Deprecated // TODO: Remove this method later
+	public static String[] productFields = {"Nome", "Descrição", "Preço"};
+	@Deprecated // TODO: Remove this method later
+	public ArrayList<String> getProductFields(){ return new ArrayList<>(Arrays.asList(productFields)); }
 }

@@ -8,10 +8,10 @@ public class Order {
   @Getter
   private List<OrderItem> items = new ArrayList<>();
 
-  public float TotalCost() {
-    return items.stream()
-        .map(a -> a.getProduct().getProductPrice())
-        .reduce((a, b) -> a+b)
-        .orElse(0.00f);
-  }
+//  public float TotalCost() {
+//    return items.stream()
+//        .map(a -> a.getProduct().getPrice())
+//        .reduce((a, b) -> a+b)
+//        .orElse(0.00f);
+//  }
 }

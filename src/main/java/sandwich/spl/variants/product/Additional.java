@@ -1,53 +1,15 @@
 package sandwich.spl.variants.product;
 
 import sandwich.shared.Category;
+import sandwich.spl.core.product.IProduct;
 import sandwich.spl.core.product.Product;
 
-public class Additional extends Product {
-	
-	int quantity;
-	
-	Additional(String additionalName, String additionalDescription, float additionalPrice, int quantity) {
-		super(additionalName, additionalDescription, additionalPrice, Category.ADDITIONAL);
-		this.quantity = quantity;
-	}
-	
+public class Additional extends Product implements IProduct {
 
-	Additional(String additionalName, String additionalDescription, float additionalPrice) {
-		super(additionalName, additionalDescription, additionalPrice, Category.ADDITIONAL);
-		this.quantity = 1;
+	public Additional(String name, String description, float price) {
+		super(name, description, price);
 	}
 
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
-	public String getAdditioalName() {
-		return super.productName;
-	}
-
-	public void setAdditioalName(String additionalName) {
-		super.setProductName(additionalName);
-	}
-	
-	public String getAdditioalDescription() {
-		return super.getProductDescription();
-	}
-
-	public void setAdditioalDescription(String additionalDescription) {
-		super.setProductDescription(additionalDescription);
-	}
-	
-	public float getAdditioalPrice() {
-		return super.productPrice;
-	}
-
-	public void setAdditioalPrice(float additionalPrice) {
-		super.setProductPrice(additionalPrice);
-	}
+	@Override
+	public Category getCategory() { return Category.ADDITIONAL; }
 }

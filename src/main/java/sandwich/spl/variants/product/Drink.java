@@ -1,55 +1,15 @@
 package sandwich.spl.variants.product;
 
 import sandwich.shared.Category;
+import sandwich.spl.core.product.IProduct;
 import sandwich.spl.core.product.Product;
 
-public class Drink extends Product {
-	
-	int quantity;
-	
-	Drink(String drinkName, String drinkDescription, float drinkPrice, int quantity) {
-		super(drinkName, drinkDescription, drinkPrice, Category.DRINK);
-		this.quantity = quantity;
-	}
-	
+public class Drink extends Product implements IProduct {
 
-	Drink(String drinkName, String drinkDescription, float drinkPrice) {
-		super(drinkName, drinkDescription, drinkPrice, Category.DRINK);
-		this.quantity = 1;
+	public Drink(String name, String description, float price) {
+		super(name, description, price);
 	}
 
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
-	public String getDrinkName() {
-		return super.productName;
-	}
-
-	public void setDrinkName(String drinkName) {
-		super.setProductName(drinkName);
-	}
-	
-	public String getDrinkDescription() {
-		return super.getProductDescription();
-	}
-
-	public void setDrinkDescription(String drinkDescription) {
-		super.setProductDescription(drinkDescription);
-	}
-	
-	public float getDrinkPrice() {
-		return super.productPrice;
-	}
-
-	public void setDrinkPrice(float drinkPrice) {
-		super.setProductPrice(drinkPrice);
-	}
-
-
+	@Override
+	public Category getCategory() { return Category.DRINK; }
 }
