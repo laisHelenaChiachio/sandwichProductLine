@@ -1,10 +1,10 @@
-package main.java.sandwich.generator.frame;
+package sandwich.generator.frame;
 
 import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import main.java.sandwich.spl.core.Sandwich;
+import sandwich.spl.core.product.Sandwich;
 
 public class CreateTableSandwich {
 	

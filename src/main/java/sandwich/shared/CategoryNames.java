@@ -1,6 +1,6 @@
-package main.java.sandwich.shared;
+package sandwich.shared;
 
-import main.java.sandwich.shared.Category;
+import sandwich.shared.Category;
 
 public class CategoryNames {
 	

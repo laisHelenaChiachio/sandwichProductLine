@@ -1,4 +1,4 @@
-package main.java.sandwich.generator.frame;
+package sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import main.java.sandwich.shared.FinalProduct;
+import sandwich.shared.FinalProduct;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 

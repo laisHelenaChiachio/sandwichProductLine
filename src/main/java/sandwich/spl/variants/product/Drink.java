@@ -1,8 +1,9 @@
-package main.java.sandwich.spl.core;
+package sandwich.spl.variants.product;
 
-import main.java.sandwich.shared.Category;
+import sandwich.shared.Category;
+import sandwich.spl.core.product.Product;
 
-public class Drink extends Product{
+public class Drink extends Product {
 	
 	int quantity;
 	

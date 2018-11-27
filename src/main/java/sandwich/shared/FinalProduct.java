@@ -1,4 +1,4 @@
-package main.java.sandwich.shared;
+package sandwich.shared;
 
 import java.util.ArrayList;
 import java.util.HashMap;

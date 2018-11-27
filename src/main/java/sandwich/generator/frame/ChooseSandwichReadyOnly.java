@@ -1,4 +1,4 @@
-package main.java.sandwich.generator.frame;
+package sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import main.java.sandwich.shared.FinalProduct;
+import sandwich.shared.FinalProduct;
 import javax.swing.JButton;
 
 

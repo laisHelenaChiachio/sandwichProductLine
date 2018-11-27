@@ -1,4 +1,4 @@
-package main.java.sandwich.generator.frame;
+package sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import main.java.sandwich.shared.FinalProduct;
+import sandwich.shared.FinalProduct;
 
 public class OrderSandwichPL {
 

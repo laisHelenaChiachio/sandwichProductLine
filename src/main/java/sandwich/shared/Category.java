@@ -1,4 +1,4 @@
-package main.java.sandwich.shared;
+package sandwich.shared;
 
 public enum Category {
 	SANDWICH,

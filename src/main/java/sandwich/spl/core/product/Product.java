@@ -1,19 +1,21 @@
-package main.java.sandwich.spl.core;
+package sandwich.spl.core.product;
 
 import java.util.ArrayList;
-import main.java.sandwich.shared.Category;
+import lombok.Getter;
+import lombok.Setter;
+import sandwich.shared.Category;
 
 public class Product {
 
-	String productName;
-	String productDescription;
-	float productPrice;
-	Category category;
-	
-	ArrayList<String> productFields = new ArrayList<String>();	
+	protected String productName;
+	protected String productDescription;
+	protected float productPrice;
+	protected Category category;
+
+	protected ArrayList<String> productFields = new ArrayList<String>();
 
 	
-	Product(String productName, String productDescription, float productPrice, Category category){
+	protected Product(String productName, String productDescription, float productPrice, Category category){
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.productPrice = productPrice;
@@ -22,8 +24,8 @@ public class Product {
 		productFields.add("Descrição");
 		productFields.add("Preço");
 	}
-	
-	Product(){}
+
+	protected Product(){}
 	
 	public String getProductName() {
 		return productName;

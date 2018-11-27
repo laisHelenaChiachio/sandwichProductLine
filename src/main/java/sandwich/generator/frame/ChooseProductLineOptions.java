@@ -1,4 +1,4 @@
-package main.java.sandwich.generator.frame;
+package sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -14,9 +14,10 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
-import main.java.sandwich.shared.Category;
-import main.java.sandwich.shared.CategoryNames;
-import main.java.sandwich.shared.FinalProduct;
+import sandwich.generator.frame.ChooseSandwichProductLineOptions.ChooseSandwichLineOnly;
+import sandwich.shared.Category;
+import sandwich.shared.CategoryNames;
+import sandwich.shared.FinalProduct;
 
 public class ChooseProductLineOptions {
 

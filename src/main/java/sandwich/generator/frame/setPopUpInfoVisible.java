@@ -1,4 +1,4 @@
-package main.java.sandwich.generator.frame;
+package sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;

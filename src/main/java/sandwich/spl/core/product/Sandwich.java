@@ -1,9 +1,10 @@
-package main.java.sandwich.spl.core;
+package sandwich.spl.core.product;
 
 import java.util.ArrayList;
-import main.java.sandwich.shared.Category;
+import sandwich.shared.Category;
+import sandwich.spl.core.product.Product;
 
-public class Sandwich extends Product{
+public class Sandwich extends Product {
 	
 	int quantity;
 	ArrayList<String> sandwichFields ;	

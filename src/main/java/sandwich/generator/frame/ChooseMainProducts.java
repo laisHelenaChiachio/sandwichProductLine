@@ -1,4 +1,4 @@
-package main.java.sandwich.generator.frame;
+package sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -12,9 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import main.java.sandwich.shared.Category;
-import main.java.sandwich.shared.CategoryNames;
-import main.java.sandwich.shared.FinalProduct;
+import sandwich.shared.Category;
+import sandwich.shared.CategoryNames;
+import sandwich.shared.FinalProduct;
 
 import javax.swing.JCheckBox;
 
