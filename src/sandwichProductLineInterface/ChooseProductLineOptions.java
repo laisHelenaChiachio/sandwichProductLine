@@ -90,6 +90,8 @@ public class ChooseProductLineOptions {
 		sandwichCheckBox.setFont(new Font("Chilanka", Font.BOLD, 18));
 		sandwichCheckBox.setBackground(new Color(204, 153, 153));
 		sandwichCheckBox.setBounds(19, 181, 211, 79);
+		sandwichCheckBox.setEnabled(true);
+		sandwichCheckBox.setVisible(true);
 		frame.add(sandwichCheckBox);
 
 
@@ -125,10 +127,25 @@ public class ChooseProductLineOptions {
 					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.DRINK));
 				if(product.getProductWasSelected(Category.ADDITIONAL) && addsCheckBox.isSelected())
 					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.ADDITIONAL));	
-				product.ProductLine(listOfProductLinesChosen);	
+				product.setProductLine(listOfProductLinesChosen);	
 				frame.setVisible(false);
-//				ChooseProductLineOptions chooseProductLineOptions = new ChooseProductLineOptions(product);
-//				chooseProductLineOptions.setChooseProductLineOptionsVisible(product);
+				
+				if(!sandwichCheckBox.isSelected()) { //JUST READY SANDWICHS
+					product.setOnlyReadySandwichs(true);
+					ChooseSandwichReadyOnly readyOptions = new ChooseSandwichReadyOnly(product);
+					readyOptions.setChooseSandwichOptionsAndOrder(product);
+				}
+				if(sandwichCheckBox.isSelected() && !rdbtnNewRadioButton.isSelected()) { //JUST PRODUCT LINE SANDWICHS
+					product.setOnlyPLSandwichs(true);
+					ChooseSandwichLineOnly productLineOptions = new ChooseSandwichLineOnly(product);
+					productLineOptions.setChooseSandwichLineOnly(product);
+				}
+				if(sandwichCheckBox.isSelected() && rdbtnNewRadioButton.isSelected()) { //PRODUCT LINE  AND READYSANDWICHS
+					product.setOnlyPLSandwichs(false);
+					product.setOnlyReadySandwichs(false);
+					ChooseSandwichLineOnly productLineOptions = new ChooseSandwichLineOnly(product);
+					productLineOptions.setChooseSandwichLineOnly(product);
+				}			
 			}
 		});
 		nextBtn.setFont(new Font("Chilanka", Font.BOLD, 14));

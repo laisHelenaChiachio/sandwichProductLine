@@ -1,27 +1,44 @@
 package sandwichProductLine.code;
 
+import java.util.ArrayList;
+
 public class Sandwich extends Product{
 	
-int quantity;
+	int quantity;
+	ArrayList<String> sandwichFields ;	
+
 	
 	Sandwich(String sandwichName, String sandwichDescription, float sandwichPrice, int quantity) {
 		super(sandwichName, sandwichDescription, sandwichPrice, Category.SANDWICH);
+		sandwichFields.addAll(super.getProductFields());
 		this.quantity = quantity;
 	}
 	
 
 	Sandwich(String sandwichName, String sandwichDescription, float sandwichPrice) {
 		super(sandwichName, sandwichDescription, sandwichPrice, Category.SANDWICH);
+		sandwichFields.addAll(super.getProductFields());
 		this.quantity = 1;
 	}
-
-
+	
+	Sandwich(){}
+	
 	public int getQuantity() {
 		return quantity;
 	}
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	public ArrayList<String> getSandwichFields() {
+		return sandwichFields;
+	}
+
+	public void setSandwichFields(String field) {
+		if(!sandwichFields.contains(field)) {
+			sandwichFields.add(field);
+		}
 	}
 	
 	public String getSandwichName() {

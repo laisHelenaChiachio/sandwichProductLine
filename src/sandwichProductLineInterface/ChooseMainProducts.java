@@ -101,7 +101,6 @@ public class ChooseMainProducts {
 					listOfProducts.add(CategoryNames.getWichCategory(Category.ADDITIONAL));	
 				finalProduct = new FinalProduct(listOfProducts);
 				frame.setVisible(false);
-				
 				ChooseProductLineOptions chooseProductLineOptions = new ChooseProductLineOptions(finalProduct);
 				chooseProductLineOptions.setChooseProductLineOptionsVisible(finalProduct);
 			}

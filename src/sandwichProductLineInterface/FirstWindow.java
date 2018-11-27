@@ -85,7 +85,7 @@ public class FirstWindow {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
 				ChooseMainProducts chooseMainProductsWindow = new ChooseMainProducts();
-				chooseMainProductsWindow.setChooseMainPoductsVisible();
+				chooseMainProductsWindow.setChooseMainPoductsVisible();				
 			}
 		});
 		btnStart.setFont(new Font("Chilanka", Font.BOLD, 14));

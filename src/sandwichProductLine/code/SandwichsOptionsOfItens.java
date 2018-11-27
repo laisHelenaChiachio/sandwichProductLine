@@ -2,11 +2,14 @@ package sandwichProductLine.code;
 
 import java.util.ArrayList;
 
-public class SandwichsOptions {
+public class SandwichsOptionsOfItens {
 	
-	ArrayList<Sandwich> sandwichOptions = new ArrayList<Sandwich>();	
+	ArrayList<Sandwich> sandwichOptions;	
+	Sandwich sandwich;
 	
-	public SandwichsOptions(){
+	public SandwichsOptionsOfItens(){
+		sandwich = new Sandwich();
+		sandwichOptions = new ArrayList<Sandwich>();
 		sandwichOptions.add(new Sandwich("dandubaName1", "sandubaDescription1", 123));
 		sandwichOptions.add(new Sandwich("dandubaName2", "sandubaDescription2", 123));
 		sandwichOptions.add(new Sandwich("dandubaName3", "sandubaDescription3", 123));
@@ -23,5 +26,8 @@ public class SandwichsOptions {
 	public void addSandwichOptions(Sandwich sandwich) {
 		sandwichOptions.add(sandwich);	
 	}
-
+	
+	public ArrayList<String> getSandwichFields(){
+		return sandwich.getProductFields();
+	}
 }

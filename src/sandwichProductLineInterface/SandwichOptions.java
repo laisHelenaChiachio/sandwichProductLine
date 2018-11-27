@@ -11,10 +11,12 @@ import javax.swing.border.EmptyBorder;
 
 import sandwichProductLine.code.FinalProduct;
 import javax.swing.SwingConstants;
+import javax.swing.JTable;
 
 public class SandwichOptions extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -53,5 +55,12 @@ public class SandwichOptions extends JFrame {
 		chooseProductsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		chooseProductsLabel.setAlignmentY(50);
 		contentPane.add(chooseProductsLabel);
+		
+		table = new JTable();
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(false);
+		table.setRowSelectionAllowed(true);
+		table.setBounds(58, 103, 652, 296);
+		contentPane.add(table);
 	}
 }

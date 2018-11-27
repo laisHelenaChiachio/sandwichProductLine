@@ -1,5 +1,7 @@
 package sandwichProductLine.code;
 
+import java.util.ArrayList;
+
 public class Product {
 
 	String productName;
@@ -7,15 +9,27 @@ public class Product {
 	float productPrice;
 	Category category;
 	
+	ArrayList<String> productFields = new ArrayList<String>();	
+
+	
 	Product(String productName, String productDescription, float productPrice, Category category){
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.productPrice = productPrice;
 		this.category = category;
+		productFields.add("Nome");
+		productFields.add("Descrição");
+		productFields.add("Preço");
 	}
+	
+	Product(){}
 	
 	public String getProductName() {
 		return productName;
+	}
+	
+	public ArrayList<String> getProductFields() {
+		return productFields;
 	}
 
 	public void setProductName(String productName) {
