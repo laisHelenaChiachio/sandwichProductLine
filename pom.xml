@@ -40,7 +40,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.16.8</version>
+      <version>1.16.16</version>
     </dependency>
   </dependencies>
 
@@ -77,7 +77,8 @@
           <archive>
             <manifest>
               <!-- Jar file entry point -->
-              <mainClass>main.java.sandwich.generator.frame.FirstWindow</mainClass>
+              <mainClass>sandwich.generator.frame.FirstWindow</mainClass>
+              <!--<mainClass>sandwich.spl.cli.Client</mainClass>-->
             </manifest>
           </archive>
         </configuration>

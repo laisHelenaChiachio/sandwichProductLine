@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.IntFunction;
-import javax.swing.text.html.Option;
 import sandwich.shared.Category;
 import sandwich.spl.core.order.Order;
 import sandwich.spl.core.order.OrderItem;
@@ -155,12 +153,96 @@ public class Client {
     }
   }
 
-  private static Optional<Collection<OrderItemSubitem>> stepLoop(Category category, IProduct product, int step) {
+  private static Optional<Collection<OrderItemSubitem>> stepLoop(Category category, IProduct product, int stepNum) {
     if (!isCategoryValid(category)){
       return Optional.empty();
     }
+    Collection<OrderItemSubitem> subitems = new ArrayList<>();
 
-    return Optional.empty();// TODO
+    while (true) {
+      IProductManufactureStep step = product.getSteps().get(stepNum);
+      StringBuilder sb = new StringBuilder()
+          .append("  Step ").append(stepNum).append(": ").append(step.getTitle()).append('\n');
+      if (step.getMinQuantity() != 0) {
+        sb.append("   Min: ").append(step.getMinQuantity()).append(")");
+      }
+      if (step.getMaxQuantity() != 0) {
+        sb.append("   Max: ").append(step.getMaxQuantity()).append(")");
+      }
+      sb.append('\n')
+          .append('\n');
+
+      if (stepNum == 0) {
+        sb.append("   0: [Cancel]").append('\n');
+      } else {
+        sb.append("   0: [Previous]").append('\n');
+      }
+
+      if (stepNum == product.getSteps().size() - 1) {
+        sb.append("   1: [Finish]").append('\n');
+      } else {
+        sb.append("   1: [Previous]").append('\n');
+      }
+
+      for (int i = 0; i < step.getSubItems().size(); i++) {
+        IProductItem item = step.getSubItems().get(i);
+        sb.append("   ").append(i + 2).append(": ").append(item.getName());
+        if (item.getPrice() != 0) {
+          sb.append(" - ").append(String.format("%10.2f", item.getPrice()));
+        }
+        if (item.getMinQuantity() != 0) {
+          sb.append(" (min: ").append(item.getMinQuantity()).append(")");
+        }
+        if (item.getMaxQuantity() != 0) {
+          sb.append(" (max: ").append(item.getMaxQuantity()).append(")");
+        }
+        sb.append('\n');
+      }
+
+    }
+/*
+
+      for (int i=0; i<Category.values().length; i++) {
+        if (isCategoryValid(Category.values()[i])){
+          sb.append("   ")
+              .append(i+2)
+              .append(": Add a ")
+              .append(Category.values()[i].toString().toLowerCase())
+              .append('\n');
+        }
+      }
+      sb.append('\n')
+          .append("       Total Items: ").append(order.getItems().size()).append('\n')
+          .append("       Total Price: ").append(String.format("%10.2f", order.getTotalPrice())).append("$\n")
+          .append('\n');
+
+      Print(sb.toString());
+      String s;
+      try {
+        s = reader.readLine();
+      } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+      }
+
+      switch (s) {
+        case "0":
+          order = new Order();
+          break;
+        case "1":
+          return order;
+        default:
+          for (int i=0; i<Category.values().length; i++) {
+            if (s.equals(""+(i+2))) {
+              Optional<OrderItem> item = addProductLoop(Category.values()[i]);
+              if (item.isPresent()) {
+                order.getItems().add(item.get());
+              }
+              break;
+            }
+          }
+      }
+    }*/
   }
 
   private static void checkout() {
