@@ -1,4 +1,4 @@
-package sandwichProductLineInterface;
+package main.java.sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -10,15 +10,14 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
-import sandwichProductLine.code.Category;
-import sandwichProductLine.code.CategoryNames;
-import sandwichProductLine.code.FinalProduct;
+import main.java.sandwich.shared.Category;
+import main.java.sandwich.shared.CategoryNames;
+import main.java.sandwich.shared.FinalProduct;
 
 import javax.swing.JCheckBox;
+
 
 public class ChooseMainProducts {
 	private JFrame frame;
@@ -98,7 +97,7 @@ public class ChooseMainProducts {
 				if(drinksCheckBox.isSelected())
 					listOfProducts.add(CategoryNames.getWichCategory(Category.DRINK));
 				if(addsCheckBox.isSelected())
-					listOfProducts.add(CategoryNames.getWichCategory(Category.ADDITIONAL));	
+					listOfProducts.add(CategoryNames.getWichCategory(Category.ADDITIONAL));
 				finalProduct = new FinalProduct(listOfProducts);
 				frame.setVisible(false);
 				ChooseProductLineOptions chooseProductLineOptions = new ChooseProductLineOptions(finalProduct);

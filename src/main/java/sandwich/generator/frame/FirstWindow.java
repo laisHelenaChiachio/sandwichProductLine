@@ -1,4 +1,4 @@
-package sandwichProductLineInterface;
+package main.java.sandwich.generator.frame;
 
 import java.awt.EventQueue;
 import java.awt.Font;

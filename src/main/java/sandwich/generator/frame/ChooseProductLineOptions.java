@@ -1,4 +1,4 @@
-package sandwichProductLineInterface;
+package main.java.sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -14,9 +14,9 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
-import sandwichProductLine.code.Category;
-import sandwichProductLine.code.CategoryNames;
-import sandwichProductLine.code.FinalProduct;
+import main.java.sandwich.shared.Category;
+import main.java.sandwich.shared.CategoryNames;
+import main.java.sandwich.shared.FinalProduct;
 
 public class ChooseProductLineOptions {
 

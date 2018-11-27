@@ -1,26 +1,19 @@
-package sandwichProductLineInterface;
+package main.java.sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
-import java.text.NumberFormat;
 import java.util.HashMap;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.text.NumberFormatter;
 
-import sandwichProductLine.code.FinalProduct;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
+import main.java.sandwich.shared.FinalProduct;
 
 public class OrderSandwichPL {
 

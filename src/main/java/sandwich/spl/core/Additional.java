@@ -1,4 +1,6 @@
-package sandwichProductLine.code;
+package main.java.sandwich.spl.core;
+
+import main.java.sandwich.shared.Category;
 
 public class Additional extends Product {
 	

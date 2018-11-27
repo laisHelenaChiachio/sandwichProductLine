@@ -1,4 +1,4 @@
-package sandwichProductLine.code;
+package main.java.sandwich.spl.core;
 
 import java.util.ArrayList;
 

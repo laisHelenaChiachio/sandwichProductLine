@@ -1,4 +1,4 @@
-package sandwichProductLineInterface;
+package main.java.sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import sandwichProductLine.code.FinalProduct;
+import main.java.sandwich.shared.FinalProduct;
 
 public class FinalScreenProductsList {
 

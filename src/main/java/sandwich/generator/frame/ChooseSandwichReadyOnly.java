@@ -1,4 +1,4 @@
-package sandwichProductLineInterface;
+package main.java.sandwich.generator.frame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -14,11 +14,9 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import sandwichProductLine.code.Category;
-import sandwichProductLine.code.CategoryNames;
-import sandwichProductLine.code.FinalProduct;
-import sandwichProductLine.code.SandwichsOptionsOfItens;
+import main.java.sandwich.shared.FinalProduct;
 import javax.swing.JButton;
+
 
 
 

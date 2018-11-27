@@ -1,4 +1,6 @@
-package sandwichProductLine.code;
+package main.java.sandwich.shared;
+
+import main.java.sandwich.shared.Category;
 
 public class CategoryNames {
 	
