@@ -1,4 +1,4 @@
-package sandwich.spl.core.product.subitem;
+package sandwich.spl.core.product;
 
 public interface IProductItem {
   String getName();

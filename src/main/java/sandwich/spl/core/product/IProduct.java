@@ -2,7 +2,6 @@ package sandwich.spl.core.product;
 
 import java.util.List;
 import sandwich.shared.Category;
-import sandwich.spl.core.product.subitem.IProductItem;
 
 public interface IProduct {
   String getName();

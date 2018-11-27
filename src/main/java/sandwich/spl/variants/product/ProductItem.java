@@ -1,8 +1,8 @@
-package sandwich.spl.variants.product.subitem;
+package sandwich.spl.variants.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import sandwich.spl.core.product.subitem.IProductItem;
+import sandwich.spl.core.product.IProductItem;
 
 @Builder
 @AllArgsConstructor

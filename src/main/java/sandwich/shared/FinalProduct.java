@@ -2,6 +2,7 @@ package sandwich.shared;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class FinalProduct {
 	
@@ -139,5 +140,13 @@ public class FinalProduct {
 		    return true;
 		 else 
 		   return false;
+	}
+
+	public void serializeToFile(String file) {
+		throw new NotImplementedException(); // TODO
+	}
+
+	public static FinalProduct deserializeFromFile(String file) {
+		throw new NotImplementedException(); // TODO
 	}
 }

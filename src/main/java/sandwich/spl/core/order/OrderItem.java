@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import sandwich.spl.core.product.Product;
-import sandwich.spl.variants.product.subitem.ProductItem;
+import sandwich.spl.variants.product.ProductItem;
 
 @Getter
 @Setter

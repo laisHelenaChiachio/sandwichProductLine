@@ -3,8 +3,6 @@ package sandwich.spl.core.product;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import sandwich.spl.core.product.subitem.IProductItem;
 
 public abstract class Product implements IProduct {
 
