@@ -3,13 +3,14 @@ package sandwich.spl.core.product;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import sandwich.spl.core.product.step.IProductManufactureStep;
 
 public abstract class Product implements IProduct {
 
 	private String name;
 	private String description;
 	private float price;
-	private List<IProductItem> subItems = new ArrayList<>();
+	private List<IProductManufactureStep> steps = new ArrayList<>();
 
 	public Product(String name, String description, float price){
 		this.name = name;
@@ -33,7 +34,7 @@ public abstract class Product implements IProduct {
 	public void setPrice(float price) {this.price = price; }
 
 	@Override
-	public List<IProductItem> getSubItems() { return subItems; }
+	public List<IProductManufactureStep> getSteps() { return steps; }
 
 	@Deprecated // TODO: Remove this method later
 	public static String[] productFields = {"Nome", "Descrição", "Preço"};

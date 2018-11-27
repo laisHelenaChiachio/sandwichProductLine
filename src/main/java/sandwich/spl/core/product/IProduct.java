@@ -2,6 +2,7 @@ package sandwich.spl.core.product;
 
 import java.util.List;
 import sandwich.shared.Category;
+import sandwich.spl.core.product.step.IProductManufactureStep;
 
 public interface IProduct {
   String getName();
@@ -15,5 +16,5 @@ public interface IProduct {
 
   Category getCategory();
 
-  List<IProductItem> getSubItems();
+  List<IProductManufactureStep> getSteps();
 }

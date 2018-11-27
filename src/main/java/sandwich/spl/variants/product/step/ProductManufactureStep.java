@@ -2,15 +2,29 @@ package sandwich.spl.variants.product.step;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import sandwich.spl.core.product.IProductItem;
 import sandwich.spl.core.product.step.IProductManufactureStep;
-import sandwich.spl.variants.product.ProductItem;
 
+@AllArgsConstructor
 public abstract class ProductManufactureStep implements IProductManufactureStep {
 
+  private String title;
   private int minQuantity = 0;
   private int maxQuantity = 0;
 
-  private List<ProductItem> subItems = new ArrayList<>();
+  private List<IProductItem> subItems = new ArrayList<>();
+
+  public ProductManufactureStep(String title, int minQuantity, int maxQuantity){
+    this.title = title;
+    this.minQuantity = minQuantity;
+    this.maxQuantity = maxQuantity;
+  }
+
+  @Override
+  public String getTitle() { return title; }
+  @Override
+  public void setTitle(String title) {this.title = title; }
 
   @Override
   public int getMinQuantity() { return minQuantity; }
@@ -23,5 +37,5 @@ public abstract class ProductManufactureStep implements IProductManufactureStep 
   public void setMaxQuantity(int maxQuantity) {this.maxQuantity = maxQuantity; }
 
   @Override
-  public List<ProductItem> getSubItems() { return subItems; }
+  public List<IProductItem> getSubItems() { return subItems; }
 }
