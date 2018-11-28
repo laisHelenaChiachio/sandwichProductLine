@@ -17,6 +17,7 @@ import java.awt.Font;
 import sandwich.generator.frame.ChooseSandwichProductLineOptions.ChooseSandwichLineOnly;
 import sandwich.shared.Category;
 import sandwich.shared.CategoryNames;
+import sandwich.shared.Feature;
 import sandwich.shared.FinalProduct;
 
 public class ChooseProductLineOptions {
@@ -124,10 +125,12 @@ public class ChooseProductLineOptions {
 				if(product.getProductWasSelected(Category.SANDWICH) && sandwichCheckBox.isSelected()) {
 					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.SANDWICH));
 					}
-				if(product.getProductWasSelected(Category.DRINK) && drinksCheckBox.isSelected())
+				if(product.getProductWasSelected(Category.DRINK) && drinksCheckBox.isSelected()) {
 					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.DRINK));
-				if(product.getProductWasSelected(Category.ADDITIONAL) && addsCheckBox.isSelected())
-					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.ADDITIONAL));	
+				}
+				if(product.getProductWasSelected(Category.ADDITIONAL) && addsCheckBox.isSelected()) {
+					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.ADDITIONAL));
+				}
 				product.setProductLine(listOfProductLinesChosen);	
 				frame.setVisible(false);
 				
@@ -140,6 +143,7 @@ public class ChooseProductLineOptions {
 					product.setOnlyPLSandwichs(true);
 					ChooseSandwichLineOnly productLineOptions = new ChooseSandwichLineOnly(product);
 					productLineOptions.setChooseSandwichLineOnly(product);
+					product.features.add(Feature.SandwichSteps);
 				}
 				if(sandwichCheckBox.isSelected() && rdbtnNewRadioButton.isSelected()) { //PRODUCT LINE  AND READYSANDWICHS
 					product.setOnlyPLSandwichs(false);

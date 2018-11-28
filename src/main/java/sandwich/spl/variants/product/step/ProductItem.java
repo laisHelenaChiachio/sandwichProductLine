@@ -1,4 +1,4 @@
-package sandwich.spl.variants.product;
+package sandwich.spl.variants.product.step;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,13 +1,15 @@
 package sandwich.spl.cli;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import javax.swing.text.html.Option;
 import sandwich.shared.Category;
+import sandwich.shared.FinalProduct;
 import sandwich.spl.core.order.Order;
 import sandwich.spl.core.order.OrderItem;
 import sandwich.spl.core.order.OrderItemSubitem;
@@ -15,20 +17,25 @@ import sandwich.spl.core.product.IProduct;
 import sandwich.spl.core.product.IProductItem;
 import sandwich.spl.core.product.Sandwich;
 import sandwich.spl.core.product.step.IProductManufactureStep;
-import sandwich.spl.variants.product.ProductItem;
+import sandwich.spl.variants.product.step.ProductItem;
 import sandwich.spl.variants.product.step.SandwichStep;
 
 public class Client {
 
-  private final static String DatabaseFilePath = "./database.json";
+  private final static String DatabaseFilePath = ".\\data.json";
+  private final static String AltDatabaseFilePath = ".\\out\\data.json";
 
   private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
   private static Collection<IProduct> productDatabase;
 
 
-  public static void main(String[] args) {
-    productDatabase = loadDatabase(DatabaseFilePath);
+  public static void main(String[] args) throws IOException {
+    try {
+      productDatabase = loadDatabase(DatabaseFilePath);
+    } catch (IOException ignored) {
+      productDatabase = loadDatabase(AltDatabaseFilePath);
+    }
 
     Order order = mainLoop();
     checkout();
@@ -296,40 +303,47 @@ public class Client {
     System.out.println(s);
   }
 
-  private static Collection<IProduct> loadDatabase(String file) {
-    //FinalProduct fp = FinalProduct.deserializeFromFile(file);
-    // TODO
-    // Mock values
+  public static Collection<IProduct> loadDatabase(String file) throws IOException {
+    FinalProduct product = FinalProduct.deserializeFromFile(new File(file));
+
     Collection<IProduct> ret = new ArrayList<>();
 
-    ret.add(new Sandwich("Sanduba feito 1", "", 5f));
-    ret.add(new Sandwich("Sanduba feito 2", "", 6f));
-    IProduct p = new Sandwich("Sanduba montar", "", 6f);
-    {
-      List<IProductManufactureStep> steps = p.getSteps();
-      SandwichStep s = new SandwichStep("Sellect Bread", 1, 1);
-      steps.add(s);
-      {
-        List<IProductItem> subItems = s.getSubItems();
-        subItems.add(new ProductItem("Normal", "", 0, 0, 0));
-        subItems.add(new ProductItem("Gluten Free", "", 0, 0, 0));
-      }
-      s = new SandwichStep("Sellect Protein", 1, 1);
-      steps.add(s);
-      {
-        List<IProductItem> subItems = s.getSubItems();
-        subItems.add(new ProductItem("Beef", "", 0, 0, 0));
-        subItems.add(new ProductItem("Chicken", "", 0, 0, 0));
-      }
-      s = new SandwichStep("Additions?", 0, 0);
-      steps.add(s);
-      {
-        List<IProductItem> subItems = s.getSubItems();
-        subItems.add(new ProductItem("Tomato", "", 0, 0, 1));
-        subItems.add(new ProductItem("Bacon", "", 2, 0, 1));
-      }
-    }
-    ret.add(p);
+    //product.
+
+
+
+    // TODO
+    // Mock values
+//    Collection<IProduct> ret = new ArrayList<>();
+//
+//    ret.add(new Sandwich("Sanduba feito 1", "", 5f));
+//    ret.add(new Sandwich("Sanduba feito 2", "", 6f));
+//    IProduct p = new Sandwich("Sanduba montar", "", 6f);
+//    {
+//      List<IProductManufactureStep> steps = p.getSteps();
+//      SandwichStep s = new SandwichStep("Sellect Bread", 1, 1);
+//      steps.add(s);
+//      {
+//        List<IProductItem> subItems = s.getSubItems();
+//        subItems.add(new ProductItem("Normal", "", 0, 0, 0));
+//        subItems.add(new ProductItem("Gluten Free", "", 0, 0, 0));
+//      }
+//      s = new SandwichStep("Sellect Protein", 1, 1);
+//      steps.add(s);
+//      {
+//        List<IProductItem> subItems = s.getSubItems();
+//        subItems.add(new ProductItem("Beef", "", 0, 0, 0));
+//        subItems.add(new ProductItem("Chicken", "", 0, 0, 0));
+//      }
+//      s = new SandwichStep("Additions?", 0, 0);
+//      steps.add(s);
+//      {
+//        List<IProductItem> subItems = s.getSubItems();
+//        subItems.add(new ProductItem("Tomato", "", 0, 0, 1));
+//        subItems.add(new ProductItem("Bacon", "", 2, 0, 1));
+//      }
+//    }
+//    ret.add(p);
 
 
     return ret;

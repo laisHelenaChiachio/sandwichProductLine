@@ -15,10 +15,17 @@ public class FirstWindow {
 
 	private JFrame frame;
 
+	public static String mavenPath = "mvn";
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
+		if (args.length > 0) {
+			mavenPath = args[0];
+		}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

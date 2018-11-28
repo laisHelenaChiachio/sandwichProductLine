@@ -4,16 +4,21 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import java.nio.file.Paths;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import sandwich.generator.core.MavenProjectGenerator;
+import sandwich.shared.Feature;
 import sandwich.shared.FinalProduct;
 
 public class FinalScreenProductsList {
 
 	private JFrame frame;
+
+	private FinalProduct product;
 
 	/**
 	 * Launch the application.
@@ -35,6 +40,7 @@ public class FinalScreenProductsList {
 	 * Create the application.
 	 */
 	public FinalScreenProductsList(FinalProduct product) {
+		this.product = product;
 		initialize(product);
 	}
 
@@ -241,6 +247,67 @@ public class FinalScreenProductsList {
 			
 			}
 		}
+
+		//Compile BUTTON
+		JButton nextBtn = new JButton("Gerar");
+		nextBtn.addActionListener(e -> Compile());
+		nextBtn.setFont(new Font("Chilanka", Font.BOLD, 14));
+		nextBtn.setBounds(1020 - 117 - 30, 800 - 40 -58, 117, 40);
+		frame.add(nextBtn);
 	}
-	
+
+	private void Compile(){
+
+		// Generation the code
+		try {
+			MavenProjectGenerator generator = new MavenProjectGenerator(Paths.get(".\\out\\"));
+			generator
+					.Cleanup()
+					.AddEssentials();
+
+
+			product.features.add(Feature.SandwichSteps);
+
+
+			// Adding Variants
+			// Product Drink
+			if (product.features.contains(Feature.Drink)){
+				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\Drink.java");
+			}
+			// Product Additional
+			if (product.features.contains(Feature.Additional)){
+				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\Additional.java");
+			}
+
+			// Anny Product Manufacture Step
+			if (product.features.contains(Feature.SandwichSteps) ||
+					product.features.contains(Feature.DrinkSteps) ||
+					product.features.contains(Feature.AdditionalSteps)) {
+				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\ProductItem.java");
+				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\ProductManufactureStep.java");
+			}
+			// Product Steps for Sandwich
+			if (product.features.contains(Feature.SandwichSteps)) {
+				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\SandwichStep.java");
+			}
+			// Product Steps for Drink
+			if (product.features.contains(Feature.DrinkSteps)) {
+				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\DrinkStep.java");
+			}
+			// Product Steps for Additional
+			if (product.features.contains(Feature.AdditionalSteps)) {
+				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\AdditionalStep.java");
+			}
+
+			// Save products (just as example really)
+			product.serializeToFile(generator.getPath().resolve("data.json").toFile());
+
+			generator
+					.Compile(Paths.get(FirstWindow.mavenPath))
+					.Execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

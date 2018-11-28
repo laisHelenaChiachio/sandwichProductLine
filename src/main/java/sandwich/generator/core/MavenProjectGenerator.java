@@ -1,20 +1,19 @@
 package sandwich.generator.core;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
-import java.util.Stack;
+import lombok.Getter;
 import org.apache.commons.io.FileUtils;
 
 
 
-// TODO add variants when generating
-// AddFile("src\\main\\java\\sandwich\\spl\\variants\\");
-
 public class MavenProjectGenerator {
 
+  @Getter
   private Path path;
 
   private HashSet<Path> addedFiles = new HashSet<>();
@@ -64,9 +63,14 @@ public class MavenProjectGenerator {
     return this;
   }
 
+  public MavenProjectGenerator Execute() {
+    // TODO
+    return this;
+  }
+
   private void Compile_P(String maven) throws IOException {
     Runtime rt = Runtime.getRuntime();
-    Process pr = rt.exec(maven + " clean install package -f " + this.path);
+    Process pr = rt.exec(maven + " clean install -f " + this.path);
   }
 
   public MavenProjectGenerator CreateDirectoryRecursively(Path path) throws IOException {
@@ -78,7 +82,14 @@ public class MavenProjectGenerator {
   }
 
   public MavenProjectGenerator Cleanup() {
-    // TODO
+    try {
+      FileUtils.deleteDirectory(this.path.toFile());
+    } catch (Exception ignored) {
+      try {
+        Thread.sleep(100);
+        FileUtils.deleteDirectory(this.path.toFile());
+      } catch (Exception ignored2) {}
+    }
     return this;
   }
 
