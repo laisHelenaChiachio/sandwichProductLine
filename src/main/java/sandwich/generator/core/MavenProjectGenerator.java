@@ -8,6 +8,11 @@ import java.util.HashSet;
 import java.util.Stack;
 import org.apache.commons.io.FileUtils;
 
+
+
+// TODO add variants when generating
+// AddFile("src\\main\\java\\sandwich\\spl\\variants\\");
+
 public class MavenProjectGenerator {
 
   private Path path;
@@ -60,7 +65,6 @@ public class MavenProjectGenerator {
   }
 
   private void Compile_P(String maven) throws IOException {
-    AddFile("src\\main\\java\\sandwich\\spl\\variants");
     Runtime rt = Runtime.getRuntime();
     Process pr = rt.exec(maven + " clean install package -f " + this.path);
   }
