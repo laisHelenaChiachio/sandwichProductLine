@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import sandwich.shared.FinalProduct;
+import sandwich.generator.core.FinalProduct;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 

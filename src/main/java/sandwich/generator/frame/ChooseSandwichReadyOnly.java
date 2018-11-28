@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import sandwich.shared.FinalProduct;
+import sandwich.generator.core.FinalProduct;
 import javax.swing.JButton;
 
 

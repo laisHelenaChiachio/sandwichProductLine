@@ -84,12 +84,14 @@ public class Client {
           return order;
         default:
           for (int i=0; i<Category.values().length; i++) {
-            if (s.equals(""+(i+2))) {
-              Optional<OrderItem> item = addProductLoop(Category.values()[i]);
-              if (item.isPresent()) {
-                order.getItems().add(item.get());
+            if (isCategoryValid(Category.values()[i])) {
+              if (s.equals("" + (i + 2))) {
+                Optional<OrderItem> item = addProductLoop(Category.values()[i]);
+                if (item.isPresent()) {
+                  order.getItems().add(item.get());
+                }
+                break;
               }
-              break;
             }
           }
       }
@@ -97,11 +99,13 @@ public class Client {
   }
 
   private static boolean isCategoryValid(Category category) {
-    return true; // TODO
+    return productDatabase.stream()
+        .anyMatch(p -> p.getCategory() == category);
   }
 
   private static boolean isSubitemCategoryValid(Category category) {
-    return true; // TODO
+    return productDatabase.stream()
+        .anyMatch(p -> p.getCategory() == category && p.getSteps().size() > 0);
   }
 
   private static Optional<OrderItem> addProductLoop(Category category) {
@@ -119,7 +123,7 @@ public class Client {
         .filter(p -> p.getCategory().equals(category))
         .toArray(IProduct[]::new);
     for (int i=0; i<products.length; i++) {
-      if (isCategoryValid(Category.values()[i])){
+      if (isCategoryValid(products[i].getCategory())){
         sb.append("   ")
             .append(i+1)
             .append(": ").append(products[i].getName()).append(" (")
@@ -314,7 +318,6 @@ public class Client {
           try {
             return p.castToTrueType();
           } catch (Exception e) {
-            e.printStackTrace();
             return null;
           }
         })

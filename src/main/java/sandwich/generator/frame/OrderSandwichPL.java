@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import sandwich.shared.FinalProduct;
+import sandwich.generator.core.FinalProduct;
 
 public class OrderSandwichPL {
 

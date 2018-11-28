@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import sandwich.shared.Category;
 import sandwich.shared.CategoryNames;
 import sandwich.shared.Feature;
-import sandwich.shared.FinalProduct;
+import sandwich.generator.core.FinalProduct;
 
 import javax.swing.JCheckBox;
 

@@ -11,7 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import sandwich.shared.FinalProduct;
+import sandwich.generator.core.FinalProduct;
 
 public class ChooseSandwichProductLineOptions {
 

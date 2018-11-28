@@ -8,8 +8,6 @@ public class Drink extends Product implements IProduct {
 
 	public Drink(String name, String description, float price) {
 		super(name, description, price);
+		setCategory(Category.DRINK);
 	}
-
-	@Override
-	public Category getCategory() { return Category.DRINK; }
 }

@@ -14,6 +14,8 @@ import sandwich.spl.core.product.IProductItem;
 // Should be in package: variant... but we need it to serialize easier
 public class ProductManufactureStep implements IProductManufactureStep {
 
+  public static final ProductManufactureStep Invalid = new ProductManufactureStep("*__X__*", -7, -9);
+
   private String title;
   private int minQuantity = 0;
   private int maxQuantity = 0;

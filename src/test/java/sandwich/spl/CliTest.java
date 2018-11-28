@@ -15,14 +15,14 @@ public class CliTest {
 
   @Test(timeout = 1500)
   public void CopyDirectoryTest() throws IOException {
-    Collection<IProduct> productDatabase;
-    try {
-      productDatabase = Client.loadDatabase(new File(DatabaseFilePath));
-    } catch (IOException ignored) {
-      productDatabase = Client.loadDatabase(new File(AltDatabaseFilePath));
-    }
-
-    IProduct prod = (IProduct) productDatabase.toArray()[9];
-    int size = prod.getSteps().size();
+//    Collection<IProduct> productDatabase;
+//    try {
+//      productDatabase = Client.loadDatabase(new File(DatabaseFilePath));
+//    } catch (IOException ignored) {
+//      productDatabase = Client.loadDatabase(new File(AltDatabaseFilePath));
+//    }
+//
+//    IProduct prod = (IProduct) productDatabase.toArray()[9];
+//    int size = prod.getSteps().size();
   }
 }

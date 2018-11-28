@@ -8,8 +8,6 @@ public class Additional extends Product implements IProduct {
 
 	public Additional(String name, String description, float price) {
 		super(name, description, price);
+		setCategory(Category.ADDITIONAL);
 	}
-
-	@Override
-	public Category getCategory() { return Category.ADDITIONAL; }
 }

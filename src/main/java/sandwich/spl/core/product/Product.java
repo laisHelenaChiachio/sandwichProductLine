@@ -79,14 +79,15 @@ public class Product implements IProduct {
 					try {
 						return IProductManufactureStep.castToTrueType(s, getCategory());
 					} catch (Exception e) {
-						e.printStackTrace();
-						return null;
+						return ProductManufactureStep.Invalid;
 					}
 				})
-				.filter(s -> s != null)
 				.collect(Collectors.toList());
+		if (steps.contains(ProductManufactureStep.Invalid)) {
+			return null;
+		}
 		Constructor ctr = c.getConstructor(String.class, String.class, float.class);
-		trueTyped = (Product) ctr.newInstance(name, description, price);
+		trueTyped = (Product) ctr.newInstance(this.name, description, price);
 		trueTyped.setSteps(steps);
 		return trueTyped;
 	}

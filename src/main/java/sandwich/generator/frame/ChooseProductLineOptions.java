@@ -18,7 +18,7 @@ import sandwich.generator.frame.ChooseSandwichProductLineOptions.ChooseSandwichL
 import sandwich.shared.Category;
 import sandwich.shared.CategoryNames;
 import sandwich.shared.Feature;
-import sandwich.shared.FinalProduct;
+import sandwich.generator.core.FinalProduct;
 
 public class ChooseProductLineOptions {
 

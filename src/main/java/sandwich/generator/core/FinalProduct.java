@@ -1,4 +1,4 @@
-package sandwich.shared;
+package sandwich.generator.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -9,6 +9,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import lombok.AllArgsConstructor;
+import sandwich.shared.Category;
+import sandwich.shared.CategoryNames;
+import sandwich.shared.Feature;
 import sandwich.spl.core.product.IProduct;
 import sandwich.spl.core.product.Sandwich;
 import sandwich.spl.variants.product.Additional;
@@ -150,7 +153,7 @@ public class FinalProduct {
 	}
 	
 	public boolean getProductWasSelected(Category category) {
-		if (mainProducts.contains(CategoryNames.getWichCategory(category))) 
+		if (mainProducts.contains(CategoryNames.getWichCategory(category)))
 		    return true;
 		 else 
 		   return false;

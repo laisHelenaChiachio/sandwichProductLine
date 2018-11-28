@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 
 import sandwich.generator.core.MavenProjectGenerator;
 import sandwich.shared.Feature;
-import sandwich.shared.FinalProduct;
+import sandwich.generator.core.FinalProduct;
 
 public class FinalScreenProductsList {
 
@@ -283,8 +283,8 @@ public class FinalScreenProductsList {
 			if (product.features.contains(Feature.SandwichSteps) ||
 					product.features.contains(Feature.DrinkSteps) ||
 					product.features.contains(Feature.AdditionalSteps)) {
-				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\ProductItem.java");
-				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\ProductManufactureStep.java");
+//				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\ProductItem.java");
+//				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\ProductManufactureStep.java");
 			}
 			// Product Steps for Sandwich
 			if (product.features.contains(Feature.SandwichSteps)) {
