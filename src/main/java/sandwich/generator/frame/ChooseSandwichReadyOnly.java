@@ -71,19 +71,10 @@ public class ChooseSandwichReadyOnly {
 		Object[][] rows = {
 	    		{"X-burguer", "Dois Hamburgueres, acompanhado de tomate, maionese e queijo tipo mussarela derretido no pao de hamburguer", "R$16,00"},
 	    		{"X-Salada", "Dois Hamburgueres, acompanhado de tomate, maionese e queijo tipo mussarela derretido no pao de hamburguer e alface", "R$17,50"},
-	    		{"X-Salada", "ueres, acompanhado de tomate, maionese e queijo tipo mussarela derretido no pao de hamburguer e bacon", "R$21,00"},
+	    		{"X-Bacon", "Dois Hamburgueres, acompanhado de tomate, maionese e queijo tipo mussarela derretido no pao de hamburguer e bacon", "R$21,00"},
 	    	};
 
-	    jtable = new JTable(new DefaultTableModel(
-	    	new Object[][] {
-	    		{"X-burguer", "Dois Hamburgueres, acompanhado de tomate, maionese e queijo tipo mussarela derretido no pao de hamburguer", "R$16,00"},
-	    		{"X-Salada", "Dois Hamburgueres, acompanhado de tomate, maionese e queijo tipo mussarela derretido no pao de hamburguer e alface", "R$17,50"},
-	    		{"X-Bacon", "ueres, acompanhado de tomate, maionese e queijo tipo mussarela derretido no pao de hamburguer e bacon", "R$21,00"},
-	    	},
-	    	new String[] {
-	    		"Nome", "Descri\u00E7\u00E3o", "Pre\u00E7o"
-	    	}
-	    ));
+	    jtable = new JTable(new DefaultTableModel(rows, mainColunm));
 	    
 	    jtable.setSurrendersFocusOnKeystroke(true);
 		jtable.setFillsViewportHeight(true);

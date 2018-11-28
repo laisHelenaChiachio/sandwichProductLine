@@ -1,6 +1,7 @@
 package sandwich.shared;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -13,6 +14,7 @@ public class FinalProduct {
 	ArrayList<String> cheese = new ArrayList<String>();
 	ArrayList<String> salad = new ArrayList<String>();
 	ArrayList<HashMap<String, Integer>>  orderSandwichPL = new ArrayList<HashMap<String, Integer>>();
+	ArrayList<HashMap<String, String>> sandwichReadyChosen = new ArrayList<HashMap<String, String>>();
 	boolean onlyReadySandwichs;
 	boolean onlyPLSandwichs;
 
@@ -67,16 +69,12 @@ public class FinalProduct {
 	}
 	
 	public ArrayList<String> getProtein() {
-		return bread;
+		return protein;
 	}
 
 	public void setProtein(String protein) {
 		this.protein.add(protein);
-	}
-
-	ArrayList<HashMap<String, String>> sandwichReadyChosen = new ArrayList<HashMap<String, String>>();
-	
-	
+	}	
 	
 	public FinalProduct(ArrayList<String> mainProductsList){
 		mainProducts.addAll(mainProductsList);

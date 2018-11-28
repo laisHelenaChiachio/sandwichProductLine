@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.Font;
@@ -52,10 +53,12 @@ public class setPopUpInfoVisible {
 		frame.getContentPane().setLayout(null);
 		frame.setFocusable(true);
 		
-		JLabel lblNewLabel = new JLabel(descriptionText);
+		JTextArea lblNewLabel = new JTextArea(descriptionText);
+		lblNewLabel.setEditable(false);
+		lblNewLabel.setLineWrap(true);
 		lblNewLabel.setFont(new Font("Chilanka", Font.BOLD, 16));
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setBackground(new Color(245, 222, 179));
+		lblNewLabel.setBackground(new Color(238, 232, 170));
+		lblNewLabel.setWrapStyleWord(true);
 		lblNewLabel.setBounds(20, 20, 273, 86);
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setAlignmentY(Component.BOTTOM_ALIGNMENT);

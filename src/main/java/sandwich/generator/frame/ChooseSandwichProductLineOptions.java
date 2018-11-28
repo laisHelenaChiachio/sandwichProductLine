@@ -297,11 +297,11 @@ public class ChooseSandwichProductLineOptions {
           
           
           if(lettuce.isSelected())
-            product.setCheese("Folhas de Alface");
+            product.setSalad("Folhas de Alface");
           if(tomato.isSelected())
-            product.setCheese("Rodelas de Tomate");
+            product.setSalad("Rodelas de Tomate");
           if(olive.isSelected())
-            product.setCheese("Azeitonas");
+            product.setSalad("Azeitonas");
           
           if((breadAmerican.isSelected() || breadItalian.isSelected() || breadBrioche.isSelected() || breadAustralian.isSelected()) 
               && (redMeat.isSelected() || chicken.isSelected() || egg.isSelected() || pig.isSelected())) {
