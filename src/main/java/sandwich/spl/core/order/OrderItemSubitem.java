@@ -10,5 +10,5 @@ import sandwich.spl.core.product.IProductItem;
 @AllArgsConstructor
 public class OrderItemSubitem {
   private IProductItem subItem;
-  private short quantity;
+  private int quantity;
 }
