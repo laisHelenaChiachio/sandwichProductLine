@@ -98,23 +98,25 @@ public class ChooseProductLineOptions {
 
 
 		//DRINK BOX
-		if(product.getProductWasSelected(Category.DRINK)) {
+		if(product.features.contains(Feature.Drink)) {
 			drinksCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
 			drinksCheckBox.setForeground(Color.WHITE);
 			drinksCheckBox.setFont(new Font("Chilanka", Font.BOLD, 18));
 			drinksCheckBox.setBackground(new Color(204, 153, 153));
 			drinksCheckBox.setBounds(279, 181, 211, 79);
 			frame.add(drinksCheckBox);
+			drinksCheckBox.setVisible(true);
 		}
 		
 		//ADITIONAL BOX
-		if(product.getProductWasSelected(Category.ADDITIONAL)) {
+		if(product.features.contains(Feature.Additional)) {
 			addsCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
 			addsCheckBox.setForeground(Color.WHITE);
 			addsCheckBox.setFont(new Font("Chilanka", Font.BOLD, 18));
 			addsCheckBox.setBackground(new Color(204, 153, 153));
 			addsCheckBox.setBounds(533, 181, 237, 79);
 			frame.add(addsCheckBox);
+			addsCheckBox.setVisible(true);
 		}
 		
 		
@@ -150,7 +152,16 @@ public class ChooseProductLineOptions {
 					product.setOnlyReadySandwichs(false);
 					ChooseSandwichLineOnly productLineOptions = new ChooseSandwichLineOnly(product);
 					productLineOptions.setChooseSandwichLineOnly(product);
-				}			
+					product.features.add(Feature.SandwichSteps);
+				}
+
+				if(drinksCheckBox.isSelected()) {
+					product.features.add(Feature.DrinkSteps);
+				}
+
+				if(addsCheckBox.isSelected()) {
+					product.features.add(Feature.AdditionalSteps);
+				}
 			}
 		});
 		nextBtn.setFont(new Font("Chilanka", Font.BOLD, 14));
