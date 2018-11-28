@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import javax.swing.text.html.Option;
 import sandwich.shared.Category;
 import sandwich.spl.core.order.Order;
 import sandwich.spl.core.order.OrderItem;
@@ -157,33 +158,51 @@ public class Client {
     if (!isCategoryValid(category)){
       return Optional.empty();
     }
-    Collection<OrderItemSubitem> subitems = new ArrayList<>();
+    List<OrderItemSubitem> subitems = new ArrayList<>();
 
     while (true) {
       IProductManufactureStep step = product.getSteps().get(stepNum);
+
+      // Construct header
       StringBuilder sb = new StringBuilder()
           .append("  Step ").append(stepNum).append(": ").append(step.getTitle()).append('\n');
       if (step.getMinQuantity() != 0) {
-        sb.append("   Min: ").append(step.getMinQuantity()).append(")");
+        sb.append("    Min: ").append(step.getMinQuantity());
       }
       if (step.getMaxQuantity() != 0) {
-        sb.append("   Max: ").append(step.getMaxQuantity()).append(")");
+        sb.append("    Max: ").append(step.getMaxQuantity());
       }
       sb.append('\n')
           .append('\n');
 
+      // Construct Navigation Options
       if (stepNum == 0) {
         sb.append("   0: [Cancel]").append('\n');
       } else {
         sb.append("   0: [Previous]").append('\n');
       }
 
-      if (stepNum == product.getSteps().size() - 1) {
-        sb.append("   1: [Finish]").append('\n');
-      } else {
-        sb.append("   1: [Previous]").append('\n');
+      // Min step items ok
+      boolean ok = step.getMinQuantity() <= subitems.stream()
+          .filter(itm -> step.getSubItems().contains(itm.getSubItem()))
+          .map(itm -> itm.getQuantity())
+          .reduce((a, b) -> a+b)
+          .orElse(0);
+      // Min of each item in step ok
+      ok = ok && 0 == subitems.stream()
+          .filter(itm -> step.getSubItems().contains(itm.getSubItem()))
+          .filter(itm -> itm.getQuantity() < itm.getSubItem().getMinQuantity())
+          .count();
+      // Only show next step it selected min quantity
+      if (ok) {
+        if (stepNum == product.getSteps().size() - 1) {
+          sb.append("   1: [Finish]").append('\n');
+        } else {
+          sb.append("   1: [Next]").append('\n');
+        }
       }
 
+      // Construct Item options
       for (int i = 0; i < step.getSubItems().size(); i++) {
         IProductItem item = step.getSubItems().get(i);
         sb.append("   ").append(i + 2).append(": ").append(item.getName());
@@ -196,26 +215,16 @@ public class Client {
         if (item.getMaxQuantity() != 0) {
           sb.append(" (max: ").append(item.getMaxQuantity()).append(")");
         }
+        long count = subitems.stream()
+            .filter(itm -> itm.getSubItem() == item)
+            .count();
+        if (count > 0) {
+          sb.append(" (selected: ").append(count).append(")");
+        }
         sb.append('\n');
       }
 
-    }
-/*
-
-      for (int i=0; i<Category.values().length; i++) {
-        if (isCategoryValid(Category.values()[i])){
-          sb.append("   ")
-              .append(i+2)
-              .append(": Add a ")
-              .append(Category.values()[i].toString().toLowerCase())
-              .append('\n');
-        }
-      }
-      sb.append('\n')
-          .append("       Total Items: ").append(order.getItems().size()).append('\n')
-          .append("       Total Price: ").append(String.format("%10.2f", order.getTotalPrice())).append("$\n")
-          .append('\n');
-
+      // Capturing Selection
       Print(sb.toString());
       String s;
       try {
@@ -226,23 +235,52 @@ public class Client {
       }
 
       switch (s) {
-        case "0":
-          order = new Order();
-          break;
-        case "1":
-          return order;
+        case "0": // Previous / Cancel
+          if (stepNum == 0) {
+            return Optional.empty();
+          } else {
+            stepNum--;
+            continue;
+          }
+        case "1": // Next / Finish
+          if (stepNum == product.getSteps().size() - 1) {
+            return Optional.of(subitems);
+          } else {
+            stepNum++;
+            continue;
+          }
         default:
-          for (int i=0; i<Category.values().length; i++) {
+          for (int i = 0; i < step.getSubItems().size(); i++) {
             if (s.equals(""+(i+2))) {
-              Optional<OrderItem> item = addProductLoop(Category.values()[i]);
-              if (item.isPresent()) {
-                order.getItems().add(item.get());
+              IProductItem item = step.getSubItems().get(i);
+              // Max step items ok
+              boolean maxReached = (step.getMaxQuantity() > 0) &&
+                  step.getMaxQuantity() <= subitems.stream()
+                      .filter(itm -> step.getSubItems().contains(itm.getSubItem()))
+                      .map(itm -> itm.getQuantity())
+                      .reduce((a, b) -> a + b)
+                      .orElse(0);
+              // Max of each item in step ok
+              maxReached = maxReached || subitems.stream()
+                  .filter(itm -> itm.getSubItem() == item)
+                  .filter(itm -> itm.getQuantity() >= item.getMaxQuantity())
+                  .findFirst()
+                  .isPresent();
+
+              if (!maxReached) {
+                Optional<OrderItemSubitem> curSubitem = subitems.stream()
+                    .filter(itm -> itm.getSubItem() == item)
+                    .findFirst();
+                if (curSubitem.isPresent()) {
+                  curSubitem.get().setQuantity(curSubitem.get().getQuantity() + 1);
+                } else {
+                  subitems.add(new OrderItemSubitem(item, 1));
+                }
               }
-              break;
             }
           }
       }
-    }*/
+    }
   }
 
   private static void checkout() {
