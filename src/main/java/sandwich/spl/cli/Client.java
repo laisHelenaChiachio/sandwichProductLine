@@ -1,24 +1,25 @@
 package sandwich.spl.cli;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import sandwich.shared.Category;
-import sandwich.shared.FinalProduct;
 import sandwich.spl.core.order.Order;
 import sandwich.spl.core.order.OrderItem;
 import sandwich.spl.core.order.OrderItemSubitem;
 import sandwich.spl.core.product.IProduct;
 import sandwich.spl.core.product.IProductItem;
-import sandwich.spl.core.product.Sandwich;
+import sandwich.spl.core.product.Product;
 import sandwich.spl.core.product.step.IProductManufactureStep;
-import sandwich.spl.variants.product.step.ProductItem;
-import sandwich.spl.variants.product.step.SandwichStep;
 
 public class Client {
 
@@ -32,9 +33,9 @@ public class Client {
 
   public static void main(String[] args) throws IOException {
     try {
-      productDatabase = loadDatabase(DatabaseFilePath);
+      productDatabase = loadDatabase(new File(DatabaseFilePath));
     } catch (IOException ignored) {
-      productDatabase = loadDatabase(AltDatabaseFilePath);
+      productDatabase = loadDatabase(new File(AltDatabaseFilePath));
     }
 
     Order order = mainLoop();
@@ -303,48 +304,28 @@ public class Client {
     System.out.println(s);
   }
 
-  public static Collection<IProduct> loadDatabase(String file) throws IOException {
-    FinalProduct product = FinalProduct.deserializeFromFile(new File(file));
+  public static Collection<IProduct> loadDatabase(File file) throws IOException {
 
-    Collection<IProduct> ret = new ArrayList<>();
+		ObjectMapper mapper = new ObjectMapper();
 
-    //product.
+    Product[] products = mapper.readValue(file, Product[].class);
+    List<IProduct> ret = Arrays.stream(products)
+        .map(p -> {
+          try {
+            return p.castToTrueType();
+          } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+          }
+        })
+        .filter(p -> p != null)
+        .collect(Collectors.toList());
 
-
-
-    // TODO
-    // Mock values
-//    Collection<IProduct> ret = new ArrayList<>();
-//
-//    ret.add(new Sandwich("Sanduba feito 1", "", 5f));
-//    ret.add(new Sandwich("Sanduba feito 2", "", 6f));
-//    IProduct p = new Sandwich("Sanduba montar", "", 6f);
-//    {
-//      List<IProductManufactureStep> steps = p.getSteps();
-//      SandwichStep s = new SandwichStep("Sellect Bread", 1, 1);
-//      steps.add(s);
-//      {
-//        List<IProductItem> subItems = s.getSubItems();
-//        subItems.add(new ProductItem("Normal", "", 0, 0, 0));
-//        subItems.add(new ProductItem("Gluten Free", "", 0, 0, 0));
-//      }
-//      s = new SandwichStep("Sellect Protein", 1, 1);
-//      steps.add(s);
-//      {
-//        List<IProductItem> subItems = s.getSubItems();
-//        subItems.add(new ProductItem("Beef", "", 0, 0, 0));
-//        subItems.add(new ProductItem("Chicken", "", 0, 0, 0));
-//      }
-//      s = new SandwichStep("Additions?", 0, 0);
-//      steps.add(s);
-//      {
-//        List<IProductItem> subItems = s.getSubItems();
-//        subItems.add(new ProductItem("Tomato", "", 0, 0, 1));
-//        subItems.add(new ProductItem("Bacon", "", 2, 0, 1));
-//      }
-//    }
-//    ret.add(p);
-
+    try {
+      IProduct ip = products[0].castToTrueType();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
     return ret;
   }

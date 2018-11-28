@@ -191,20 +191,20 @@ public class OrderSandwichPL {
 				}else {
 					HashMap<String, Integer> hashBread = new HashMap<>();
 					hashBread.put("Pão", breadOrder);
-					product.setOrderSandwichPL(hashBread);
+					product.addOrderSandwichPL(hashBread);
 					HashMap<String, Integer> hashProtein = new HashMap<>();
 					hashProtein.put("Proteína", proteinOrder);
-					product.setOrderSandwichPL(hashProtein);
+					product.addOrderSandwichPL(hashProtein);
 					if(!product.getCheese().isEmpty()) {
 						HashMap<String, Integer> hashCheese = new HashMap<>();
 						hashCheese.put("Queijo", cheeseOrder);
-						product.setOrderSandwichPL(hashCheese);
+						product.addOrderSandwichPL(hashCheese);
 					}
 					
 					if(!product.getSalad().isEmpty()) {
 						HashMap<String, Integer> hashSalad = new HashMap<>();
 						hashSalad.put("Salada", saladOrder);
-						product.setOrderSandwichPL(hashSalad);
+						product.addOrderSandwichPL(hashSalad);
 					}
 
 					if(product.isOnlyPLSandwichs() && !product.getOrderSandwichPL().isEmpty()) {

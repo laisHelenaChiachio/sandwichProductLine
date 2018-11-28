@@ -102,7 +102,7 @@ public class ChooseSandwichReadyOnly {
 								if(jtable.isRowSelected(i)) {
 									HashMap<String, String> data = new HashMap<String, String>();
 									data.put(rows[i][0].toString(),rows[i][1].toString());
-									product.setSandwichReadyChosen(data);					
+									product.addSandwichReadyChosen(data);
 								}
 							}
 							//Final screen

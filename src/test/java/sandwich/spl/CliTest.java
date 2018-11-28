@@ -1,6 +1,7 @@
 package sandwich.spl;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import org.junit.Test;
@@ -16,11 +17,12 @@ public class CliTest {
   public void CopyDirectoryTest() throws IOException {
     Collection<IProduct> productDatabase;
     try {
-      productDatabase = Client.loadDatabase(DatabaseFilePath);
+      productDatabase = Client.loadDatabase(new File(DatabaseFilePath));
     } catch (IOException ignored) {
-      productDatabase = Client.loadDatabase(AltDatabaseFilePath);
+      productDatabase = Client.loadDatabase(new File(AltDatabaseFilePath));
     }
 
-    int i = 0;
+    IProduct prod = (IProduct) productDatabase.toArray()[9];
+    int size = prod.getSteps().size();
   }
 }

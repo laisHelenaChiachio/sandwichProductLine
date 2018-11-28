@@ -1,11 +1,15 @@
-package sandwich.spl.variants.product.step;
+package sandwich.spl.core.product.step;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import sandwich.spl.core.product.IProductItem;
 
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+// Should be in package: v... but we need it to serialize easier
 public class ProductItem implements IProductItem {
 
   private String name;

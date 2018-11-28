@@ -1,28 +1,26 @@
 package sandwich.shared;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import sandwich.spl.core.product.IProduct;
+import sandwich.spl.core.product.Sandwich;
+import sandwich.spl.variants.product.Additional;
+import sandwich.spl.variants.product.Drink;
+import sandwich.spl.core.product.step.ProductItem;
+import sandwich.spl.variants.product.step.SandwichStep;
 
 
 @AllArgsConstructor
 public class FinalProduct {
 
-	@JsonIgnore
 	List<String> mainProducts = new ArrayList<String>();
-	@JsonIgnore
 	List<String> productLine = new ArrayList<String>();
 	List<String> bread = new ArrayList<String>();
 	List<String> protein = new ArrayList<String>();
@@ -30,14 +28,11 @@ public class FinalProduct {
 	List<String> salad = new ArrayList<String>();
 	List<HashMap<String, Integer>>  orderSandwichPL = new ArrayList<HashMap<String, Integer>>();
 	List<HashMap<String, String>> sandwichReadyChosen = new ArrayList<HashMap<String, String>>();
-	@JsonIgnore
 	boolean onlyReadySandwichs;
-	@JsonIgnore
 	boolean onlyPLSandwichs;
 
 	public FinalProduct(){}
 
-	@JsonIgnore
 	public HashSet<Feature> features = new HashSet<>();
 
 	public boolean isOnlyPLSandwichs() {
@@ -60,8 +55,7 @@ public class FinalProduct {
 		return orderSandwichPL;
 	}
 
-	@JsonIgnore
-	public void setOrderSandwichPL(HashMap<String, Integer> orderSandwichPL) {
+	public void addOrderSandwichPL(HashMap<String, Integer> orderSandwichPL) {
 		this.orderSandwichPL.add(orderSandwichPL);
 	}
 	public void setOrderSandwichPL(List<HashMap<String, Integer>> orderSandwichPL) {
@@ -72,8 +66,7 @@ public class FinalProduct {
 		return bread;
 	}
 
-	@JsonIgnore
-	public void setBread(String bread) {
+	public void addBread(String bread) {
 		this.bread.add(bread);
 	}
 	public void setBread(List<String> bread) {
@@ -85,8 +78,7 @@ public class FinalProduct {
 		return cheese;
 	}
 
-	@JsonIgnore
-	public void setSalad(String salad) {
+	public void addSalad(String salad) {
 		this.salad.add(salad);
 	}
 	public void setSalad(List<String> salad) { this.salad = salad; }
@@ -95,17 +87,15 @@ public class FinalProduct {
 		return salad;
 	}
 
-	@JsonIgnore
-	public void setCheese(String cheese) {
+	public void addCheese(String cheese) {
 		this.cheese.add(cheese);
 	}
 	public void setCheese(List<String> cheese) { this.cheese = cheese; }
 
-	@JsonIgnore
 	public List<String> getProtein() {
 		return protein;
 	}
-	public void setProtein(String protein) {
+	public void addProtein(String protein) {
 		this.protein.add(protein);
 	}
 	public void setProtein(List<String> protein) {
@@ -131,12 +121,10 @@ public class FinalProduct {
 //	}
 
 
-	@JsonIgnore
 	public int getMainProductListSize() {
 		return mainProducts.size();
 	}
 
-	@JsonIgnore
 	public int getProductLineListSize() {
 		return productLine.size();
 	}
@@ -149,8 +137,7 @@ public class FinalProduct {
 		return sandwichReadyChosen;
 	}
 
-	@JsonIgnore
-	public void setSandwichReadyChosen(HashMap<String, String> sandwich) {
+	public void addSandwichReadyChosen(HashMap<String, String> sandwich) {
 		sandwichReadyChosen.add(sandwich);
 	}
 
@@ -169,7 +156,6 @@ public class FinalProduct {
 		   return false;
 	}
 
-	@JsonIgnore
 	public int getNumberOfItens() {
 		int totalItens = 2;
 		if(!cheese.isEmpty())
@@ -187,12 +173,96 @@ public class FinalProduct {
 	}
 
 	public void serializeToFile(File file) throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(file, this);
-	}
+		List<IProduct> products = new ArrayList<>();
 
-	public static FinalProduct deserializeFromFile(File file) throws IOException {
+		Random rand = new Random();
+
+		// Ready Recipes (sandwich)
+		for (HashMap<String, String> readySand : this.getSandwichReadyChosen()) {
+			products.add(new Sandwich(
+					readySand.keySet().toArray(new String[0])[0],
+					readySand.values().toArray(new String[0])[0],
+					4 + rand.nextInt(3) + rand.nextInt(9) * 0.1f));
+		}
+
+		// Make it yourself (sandwich)
+		if (this.bread.size() > 0) {
+			Sandwich s = new Sandwich("Custom", "Monte o seu",
+					4 + rand.nextInt(3) + rand.nextInt(9) * 0.1f);
+			products.add(s);
+
+			// Bread
+			SandwichStep step = new SandwichStep("Escolha o pão:", 1, 1);
+			s.getSteps().add(step);
+			for (String subItem : this.getBread()) {
+				step.getSubItems().add(new ProductItem(subItem, "", 0));
+			}
+
+			// Protein
+			step = new SandwichStep("Escolha a proteina:", 0, 1);
+			s.getSteps().add(step);
+			for (String subItem : this.getProtein()) {
+				step.getSubItems().add(new ProductItem(subItem, "", 0));
+			}
+
+			// Cheese
+			step = new SandwichStep("Escolha o queijo:", 0, 1);
+			s.getSteps().add(step);
+			for (String subItem : this.getCheese()) {
+				step.getSubItems().add(new ProductItem(subItem, "", 0));
+			}
+
+			// Cheese
+			step = new SandwichStep("Escolha a salada:", 0, 1);
+			s.getSteps().add(step);
+			for (String subItem : this.getSalad()) {
+				step.getSubItems().add(new ProductItem(subItem, "", 0));
+			}
+		}
+
+		// Mocked Drinks
+		products.add(new Drink("Agua 300ml", "", 4f));
+		products.add(new Drink("Suco Laranja 300ml", "", 6f));
+		{
+			Drink drink = new Drink("Milk Shake", "", 10f);
+			products.add(drink);
+
+			// Passo1 - Sabor
+			SandwichStep step = new SandwichStep("Escolha o sorvete:", 1, 1);
+			drink.getSteps().add(step);
+			step.getSubItems().add(new ProductItem("Creme", "", 0));
+			step.getSubItems().add(new ProductItem("Chocolate", "", 0));
+			step.getSubItems().add(new ProductItem("Morango", "", 0));
+
+			// Passo2 - Cobertura
+			step = new SandwichStep("Escolha a cobertura:", 0, 1);
+			drink.getSteps().add(step);
+			step.getSubItems().add(new ProductItem("Chocolate", "", 0));
+			step.getSubItems().add(new ProductItem("Morango", "", 0));
+			step.getSubItems().add(new ProductItem("Ovomaltine", "", 0));
+
+			// Passo3 - Cobertura Extra
+			step = new SandwichStep("Cobertura Extra?:", 0, 1);
+			drink.getSteps().add(step);
+			step.getSubItems().add(new ProductItem("Sim", "", 2));
+		}
+
+		// Mocked Side dishes
+		products.add(new Additional("Brownie", "", 8f));
+		products.add(new Additional("Cookie", "", 10f));
+		{
+			Additional additional = new Additional("Fritas", "", 0f);
+			products.add(additional);
+
+			// Passo1 - Tamanho
+			SandwichStep step = new SandwichStep("Escolha o tamanho:", 1, 1);
+			additional.getSteps().add(step);
+			step.getSubItems().add(new ProductItem("Pequena", "", 4));
+			step.getSubItems().add(new ProductItem("Media", "", 6));
+			step.getSubItems().add(new ProductItem("Grande", "", 8));
+		}
+
 		ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(file, FinalProduct.class);
+		mapper.writeValue(file, products);
 	}
 }

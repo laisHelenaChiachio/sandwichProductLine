@@ -265,13 +265,13 @@ public class ChooseSandwichProductLineOptions {
             popUp.setPopUpInfoVisible("Selecione pelo menos um tipo de pão");
           } else {
             if(breadAmerican.isSelected())
-              product.setBread("Pão Americano");
+              product.addBread("Pão Americano");
             if(breadItalian.isSelected())
-              product.setBread("Pão Italiano");
+              product.addBread("Pão Italiano");
             if(breadBrioche.isSelected())
-              product.setBread("Pão Brioche");
+              product.addBread("Pão Brioche");
             if(breadAustralian.isSelected())
-              product.setBread("Pão Australiano");
+              product.addBread("Pão Australiano");
           }
           
           if(!redMeat.isSelected() && !chicken.isSelected() && !egg.isSelected() && !pig.isSelected()) {
@@ -279,29 +279,29 @@ public class ChooseSandwichProductLineOptions {
             popUp.setPopUpInfoVisible("Selecione pelo menos uma proteína");
           } else {
             if(redMeat.isSelected())
-              product.setProtein("Carne Vermelha");
+              product.addProtein("Carne Vermelha");
             if(chicken.isSelected())
-              product.setProtein("Peito de Frango");
+              product.addProtein("Peito de Frango");
             if(egg.isSelected())
-              product.setProtein("Ovo");
+              product.addProtein("Ovo");
             if(pig.isSelected())
-              product.setProtein("Presunto");
+              product.addProtein("Presunto");
           }
           
           if(cheddar.isSelected())
-            product.setCheese("Queijo Cheddar");
+            product.addCheese("Queijo Cheddar");
           if(prato.isSelected())
-            product.setCheese("Queijo Prato");
+            product.addCheese("Queijo Prato");
           if(provolone.isSelected())
-            product.setCheese("Queijo Provolone");
+            product.addCheese("Queijo Provolone");
           
           
           if(lettuce.isSelected())
-            product.setSalad("Folhas de Alface");
+            product.addSalad("Folhas de Alface");
           if(tomato.isSelected())
-            product.setSalad("Rodelas de Tomate");
+            product.addSalad("Rodelas de Tomate");
           if(olive.isSelected())
-            product.setSalad("Azeitonas");
+            product.addSalad("Azeitonas");
           
           if((breadAmerican.isSelected() || breadItalian.isSelected() || breadBrioche.isSelected() || breadAustralian.isSelected()) 
               && (redMeat.isSelected() || chicken.isSelected() || egg.isSelected() || pig.isSelected())) {
