@@ -23,7 +23,6 @@ import javax.swing.JCheckBox;
 public class ChooseMainProducts {
 	private JFrame frame;
 	private FinalProduct finalProduct;
-	private ArrayList<String> listOfProducts = new ArrayList<String>();
 
 
 	/**
@@ -94,15 +93,12 @@ public class ChooseMainProducts {
 		JButton nextBtn = new JButton("PRÓXIMO");
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-        finalProduct = new FinalProduct(listOfProducts);
-				listOfProducts.add(CategoryNames.getWichCategory(Category.SANDWICH));
+        finalProduct = new FinalProduct();
 				finalProduct.features.add(Feature.Sandwich);
 				if(drinksCheckBox.isSelected()) {
-					listOfProducts.add(CategoryNames.getWichCategory(Category.DRINK));
 					finalProduct.features.add(Feature.Drink);
 				}
 				if(addsCheckBox.isSelected()){
-					listOfProducts.add(CategoryNames.getWichCategory(Category.ADDITIONAL));
 					finalProduct.features.add(Feature.Additional);
 				}
 				frame.setVisible(false);

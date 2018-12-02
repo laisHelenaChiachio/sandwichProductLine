@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import sandwich.shared.Category;
 import sandwich.shared.CategoryNames;
 import sandwich.shared.Feature;
@@ -21,10 +22,10 @@ import sandwich.spl.variants.product.step.SandwichStep;
 
 
 @AllArgsConstructor
+@NoArgsConstructor
 public class FinalProduct {
 
-	List<String> mainProducts = new ArrayList<String>();
-	List<String> productLine = new ArrayList<String>();
+
 	List<String> bread = new ArrayList<String>();
 	List<String> protein = new ArrayList<String>();
 	List<String> cheese = new ArrayList<String>();
@@ -33,10 +34,9 @@ public class FinalProduct {
 	List<HashMap<String, String>> sandwichReadyChosen = new ArrayList<HashMap<String, String>>();
 	boolean onlyReadySandwichs;
 	boolean onlyPLSandwichs;
-
-	public FinalProduct(){}
-
 	public HashSet<Feature> features = new HashSet<>();
+
+
 
 	public boolean isOnlyPLSandwichs() {
 		return onlyPLSandwichs;
@@ -68,32 +68,23 @@ public class FinalProduct {
 	public List<String> getBread() {
 		return bread;
 	}
-
 	public void addBread(String bread) {
 		this.bread.add(bread);
 	}
-	public void setBread(List<String> bread) {
-		this.bread = bread;
-	}
-
 
 	public List<String> getCheese() {
 		return cheese;
 	}
-
 	public void addSalad(String salad) {
 		this.salad.add(salad);
 	}
-	public void setSalad(List<String> salad) { this.salad = salad; }
 
 	public List<String> getSalad() {
 		return salad;
 	}
-
 	public void addCheese(String cheese) {
 		this.cheese.add(cheese);
 	}
-	public void setCheese(List<String> cheese) { this.cheese = cheese; }
 
 	public List<String> getProtein() {
 		return protein;
@@ -101,41 +92,7 @@ public class FinalProduct {
 	public void addProtein(String protein) {
 		this.protein.add(protein);
 	}
-	public void setProtein(List<String> protein) {
-		this.protein = protein;
-	}
 
-
-
-	public FinalProduct(List<String> mainProductsList){
-		mainProducts.addAll(mainProductsList);
-	}
-	
-	public void setProductLine(List<String> productLine){
-		this.productLine.addAll(productLine);
-	}
-		
-//	public void setMainProducts(Category category) {
-//		mainProducts.add(CategoryNames.getWichCategory(category));
-//	}
-//
-//	public void setProductLine(Category category) {
-//		productLine.add(CategoryNames.getWichCategory(category));
-//	}
-
-
-	public int getMainProductListSize() {
-		return mainProducts.size();
-	}
-
-	public int getProductLineListSize() {
-		return productLine.size();
-	}
-	
-	public List<String> getProductLine() {
-		return productLine;
-	}
-	
 	public List<HashMap<String, String>> getSandwichReadyChosen() {
 		return sandwichReadyChosen;
 	}
@@ -144,19 +101,10 @@ public class FinalProduct {
 		sandwichReadyChosen.add(sandwich);
 	}
 
-	public void setSandwichReadyChosen(List<HashMap<String, String>> sandwich) {
-		sandwichReadyChosen = sandwich;
-	}
-	
-	public List<String> getMainProducts() {
-		return mainProducts;
-	}
-	
 	public boolean getProductWasSelected(Category category) {
-		if (mainProducts.contains(CategoryNames.getWichCategory(category)))
-		    return true;
-		 else 
-		   return false;
+		return features.stream()
+				.filter(Feature::isProduct)
+				.anyMatch(f -> f.isCategory(category));
 	}
 
 	public int getNumberOfItens() {
@@ -166,13 +114,6 @@ public class FinalProduct {
 		if(!salad.isEmpty())
 			totalItens +=1;
 		return totalItens;
-	}
-
-	public boolean setProductLineOptions(Category category) {
-		if (mainProducts.contains(CategoryNames.getWichCategory(category)))
-			return true;
-		else
-			return false;
 	}
 
 	public void serializeToFile(File file) throws IOException {

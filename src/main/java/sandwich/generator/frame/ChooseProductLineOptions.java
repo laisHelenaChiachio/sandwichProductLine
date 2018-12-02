@@ -23,7 +23,6 @@ import sandwich.generator.core.FinalProduct;
 public class ChooseProductLineOptions {
 
 	private JFrame frame;
-	private ArrayList<String> listOfProductLinesChosen = new ArrayList<String>();
 
 
 	/**
@@ -122,46 +121,33 @@ public class ChooseProductLineOptions {
 		
 		//NEXT BUTTON
 		JButton nextBtn = new JButton("PRÓXIMO");
-		nextBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(product.getProductWasSelected(Category.SANDWICH) && sandwichCheckBox.isSelected()) {
-					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.SANDWICH));
-					}
-				if(product.getProductWasSelected(Category.DRINK) && drinksCheckBox.isSelected()) {
-					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.DRINK));
+		nextBtn.addActionListener(e -> {
+			if(product.getProductWasSelected(Category.SANDWICH) && sandwichCheckBox.isSelected()) {
+				product.features.add(Feature.SandwichSteps);
 				}
-				if(product.getProductWasSelected(Category.ADDITIONAL) && addsCheckBox.isSelected()) {
-					listOfProductLinesChosen.add(CategoryNames.getWichCategory(Category.ADDITIONAL));
-				}
-				product.setProductLine(listOfProductLinesChosen);	
-				frame.setVisible(false);
-				
-				if(!sandwichCheckBox.isSelected()) { //JUST READY SANDWICHS
-					product.setOnlyReadySandwichs(true);
-					ChooseSandwichReadyOnly readyOptions = new ChooseSandwichReadyOnly(product);
-					readyOptions.setChooseSandwichOptionsAndOrder(product);
-				}
-				if(sandwichCheckBox.isSelected() && !rdbtnNewRadioButton.isSelected()) { //JUST PRODUCT LINE SANDWICHS
-					product.setOnlyPLSandwichs(true);
-					ChooseSandwichLineOnly productLineOptions = new ChooseSandwichLineOnly(product);
-					productLineOptions.setChooseSandwichLineOnly(product);
-					product.features.add(Feature.SandwichSteps);
-				}
-				if(sandwichCheckBox.isSelected() && rdbtnNewRadioButton.isSelected()) { //PRODUCT LINE  AND READYSANDWICHS
-					product.setOnlyPLSandwichs(false);
-					product.setOnlyReadySandwichs(false);
-					ChooseSandwichLineOnly productLineOptions = new ChooseSandwichLineOnly(product);
-					productLineOptions.setChooseSandwichLineOnly(product);
-					product.features.add(Feature.SandwichSteps);
-				}
+			if(product.getProductWasSelected(Category.DRINK) && drinksCheckBox.isSelected()) {
+				product.features.add(Feature.DrinkSteps);
+			}
+			if(product.getProductWasSelected(Category.ADDITIONAL) && addsCheckBox.isSelected()) {
+				product.features.add(Feature.AdditionalSteps);
+			}
+			frame.setVisible(false);
 
-				if(drinksCheckBox.isSelected()) {
-					product.features.add(Feature.DrinkSteps);
-				}
-
-				if(addsCheckBox.isSelected()) {
-					product.features.add(Feature.AdditionalSteps);
-				}
+			if(!sandwichCheckBox.isSelected()) { //JUST READY SANDWICHS
+				product.setOnlyReadySandwichs(true);
+				ChooseSandwichReadyOnly readyOptions = new ChooseSandwichReadyOnly(product);
+				readyOptions.setChooseSandwichOptionsAndOrder(product);
+			}
+			if(sandwichCheckBox.isSelected() && !rdbtnNewRadioButton.isSelected()) { //JUST PRODUCT LINE SANDWICHS
+				product.setOnlyPLSandwichs(true);
+				ChooseSandwichLineOnly productLineOptions = new ChooseSandwichLineOnly(product);
+				productLineOptions.setChooseSandwichLineOnly(product);
+			}
+			if(sandwichCheckBox.isSelected() && rdbtnNewRadioButton.isSelected()) { //PRODUCT LINE  AND READYSANDWICHS
+				product.setOnlyPLSandwichs(false);
+				product.setOnlyReadySandwichs(false);
+				ChooseSandwichLineOnly productLineOptions = new ChooseSandwichLineOnly(product);
+				productLineOptions.setChooseSandwichLineOnly(product);
 			}
 		});
 		nextBtn.setFont(new Font("Chilanka", Font.BOLD, 14));

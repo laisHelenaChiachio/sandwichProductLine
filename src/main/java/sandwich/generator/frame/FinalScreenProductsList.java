@@ -68,14 +68,17 @@ public class FinalScreenProductsList {
 		mainProducts.setFont(new Font("Chilanka", Font.BOLD, 19));
 		mainProducts.setHorizontalAlignment(SwingConstants.CENTER);
 		mainProducts.setAlignmentY(50);
-		frame.getContentPane().add(mainProducts);	
-		
+		frame.getContentPane().add(mainProducts);
+
 		JLabel productsName;
 		int xposition = 50;
 		int i = 0;
-		
-		for(i = 0; i < product.getMainProductListSize(); i++) {
-			productsName = new JLabel(product.getMainProducts().get(i));
+
+		Feature[] productFeatures = product.features.stream()
+				.filter(Feature::isProduct)
+				.toArray(Feature[]::new);
+		for(Feature feature : productFeatures) {
+			productsName = new JLabel(feature.toString());
 			productsName.setBounds(xposition , 118, 222, 26);
 			productsName.setFont(new Font("Chilanka", Font.ITALIC, 18));
 			productsName.setForeground(Color.WHITE);
@@ -93,10 +96,13 @@ public class FinalScreenProductsList {
 		productLine.setAlignmentY(50);
 		frame.getContentPane().add(productLine);	
 		
-		xposition = 50;		
-		
-		for(i = 0; i < product.getProductLineListSize(); i++) {
-			productsName = new JLabel(product.getProductLine().get(i));
+		xposition = 50;
+
+		Feature[] productLineFeatures = product.features.stream()
+				.filter(Feature::isProduct)
+				.toArray(Feature[]::new);
+		for(Feature feature : productLineFeatures) {
+			productsName = new JLabel(feature.toString());
 			productsName.setBounds(xposition , 207, 222, 26);
 			productsName.setFont(new Font("Chilanka", Font.ITALIC, 18));
 			productsName.setForeground(Color.WHITE);
