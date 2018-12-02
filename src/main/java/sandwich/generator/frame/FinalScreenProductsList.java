@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+
 import sandwich.generator.core.MavenProjectGenerator;
 import sandwich.shared.Feature;
 import sandwich.generator.core.FinalProduct;
@@ -53,14 +54,14 @@ public class FinalScreenProductsList {
 		frame.setBounds(100, 100, 1020, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JLabel mainLabel = new JLabel("SOFTWARE FINAL");
 		mainLabel.setBounds(50, 23, 800, 26);
 		mainLabel.setForeground(Color.WHITE);
 		mainLabel.setFont(new Font("Chilanka", Font.BOLD, 22));
 		mainLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mainLabel.setAlignmentY(50);
-		frame.getContentPane().add(mainLabel);	
+		frame.getContentPane().add(mainLabel);
 		
 		JLabel mainProducts = new JLabel("Produtos principais escolhidos");
 		mainProducts.setBounds(-80, 78, 516, 26);
@@ -84,7 +85,7 @@ public class FinalScreenProductsList {
 			productsName.setForeground(Color.WHITE);
 			productsName.setHorizontalAlignment(SwingConstants.LEFT);
 			productsName.setAlignmentY(50);
-			frame.getContentPane().add(productsName);	
+			frame.getContentPane().add(productsName);
 			xposition = xposition + 230;
 		}
 		
@@ -94,7 +95,7 @@ public class FinalScreenProductsList {
 		productLine.setFont(new Font("Chilanka", Font.BOLD, 19));
 		productLine.setHorizontalAlignment(SwingConstants.CENTER);
 		productLine.setAlignmentY(50);
-		frame.getContentPane().add(productLine);	
+		frame.getContentPane().add(productLine);
 		
 		xposition = 50;
 
@@ -108,7 +109,7 @@ public class FinalScreenProductsList {
 			productsName.setForeground(Color.WHITE);
 			productsName.setHorizontalAlignment(SwingConstants.LEFT);
 			productsName.setAlignmentY(50);
-			frame.getContentPane().add(productsName);	
+			frame.getContentPane().add(productsName);
 			xposition = xposition + 230;
 		}
 		
@@ -119,7 +120,7 @@ public class FinalScreenProductsList {
 			productLineChoose.setFont(new Font("Chilanka", Font.BOLD, 19));
 			productLineChoose.setHorizontalAlignment(SwingConstants.CENTER);
 			productLineChoose.setAlignmentY(50);
-			frame.getContentPane().add(productLineChoose);	
+			frame.getContentPane().add(productLineChoose);
 			
 			xposition = 50;		
 		
@@ -130,7 +131,7 @@ public class FinalScreenProductsList {
 				productsName.setForeground(Color.WHITE);
 				productsName.setHorizontalAlignment(SwingConstants.LEFT);
 				productsName.setAlignmentY(50);
-				frame.getContentPane().add(productsName);	
+				frame.getContentPane().add(productsName);
 				xposition = xposition + 230;
 			}
 			
@@ -140,7 +141,7 @@ public class FinalScreenProductsList {
 			itensPLChoose.setFont(new Font("Chilanka", Font.BOLD, 19));
 			itensPLChoose.setHorizontalAlignment(SwingConstants.CENTER);
 			itensPLChoose.setAlignmentY(50);
-			frame.getContentPane().add(itensPLChoose);	
+			frame.getContentPane().add(itensPLChoose);
 			
 			xposition = 50;		
 			for(i = 0; i < product.getBread().size(); i++) {
@@ -150,7 +151,7 @@ public class FinalScreenProductsList {
 				productsName.setForeground(Color.WHITE);
 				productsName.setHorizontalAlignment(SwingConstants.LEFT);
 				productsName.setAlignmentY(50);
-				frame.getContentPane().add(productsName);	
+				frame.getContentPane().add(productsName);
 				xposition = xposition + 230;
 			}
 			
@@ -163,7 +164,7 @@ public class FinalScreenProductsList {
 				productsName.setForeground(Color.WHITE);
 				productsName.setHorizontalAlignment(SwingConstants.LEFT);
 				productsName.setAlignmentY(50);
-				frame.getContentPane().add(productsName);	
+				frame.getContentPane().add(productsName);
 				xposition = xposition + 230;
 			}
 			
@@ -176,7 +177,7 @@ public class FinalScreenProductsList {
 					productsName.setForeground(Color.WHITE);
 					productsName.setHorizontalAlignment(SwingConstants.LEFT);
 					productsName.setAlignmentY(50);
-					frame.getContentPane().add(productsName);	
+					frame.getContentPane().add(productsName);
 					xposition = xposition + 230;
 				}
 			}
@@ -190,7 +191,7 @@ public class FinalScreenProductsList {
 					productsName.setForeground(Color.WHITE);
 					productsName.setHorizontalAlignment(SwingConstants.LEFT);
 					productsName.setAlignmentY(50);
-					frame.getContentPane().add(productsName);	
+					frame.getContentPane().add(productsName);
 					xposition = xposition + 230;
 				}
 			}
@@ -204,7 +205,7 @@ public class FinalScreenProductsList {
 					productsName.setForeground(Color.WHITE);
 					productsName.setHorizontalAlignment(SwingConstants.LEFT);
 					productsName.setAlignmentY(50);
-					frame.getContentPane().add(productsName);	
+					frame.getContentPane().add(productsName);
 					xposition = xposition + 230;
 				}
 			}
@@ -217,7 +218,7 @@ public class FinalScreenProductsList {
 			sandwichReady.setFont(new Font("Chilanka", Font.BOLD, 19));
 			sandwichReady.setHorizontalAlignment(SwingConstants.CENTER);
 			sandwichReady.setAlignmentY(50);
-			frame.getContentPane().add(sandwichReady);	
+			frame.getContentPane().add(sandwichReady);
 			
 			xposition = 280;		
 			for(i = 0; i < product.getSandwichReadyChosen().size(); i++) {
@@ -227,7 +228,7 @@ public class FinalScreenProductsList {
 				productsName.setForeground(Color.WHITE);
 				productsName.setHorizontalAlignment(SwingConstants.LEFT);
 				productsName.setAlignmentY(50);
-				frame.getContentPane().add(productsName);	
+				frame.getContentPane().add(productsName);
 				xposition = xposition + 50;		
 			}
 		}
@@ -238,7 +239,7 @@ public class FinalScreenProductsList {
 			sandwichReady.setFont(new Font("Chilanka", Font.BOLD, 19));
 			sandwichReady.setHorizontalAlignment(SwingConstants.CENTER);
 			sandwichReady.setAlignmentY(50);
-			frame.getContentPane().add(sandwichReady);	
+			frame.getContentPane().add(sandwichReady);
 			
 			xposition = 580;		
 			for(i = 0; i < product.getSandwichReadyChosen().size(); i++) {
@@ -248,7 +249,7 @@ public class FinalScreenProductsList {
 				productsName.setForeground(Color.WHITE);
 				productsName.setHorizontalAlignment(SwingConstants.LEFT);
 				productsName.setAlignmentY(50);
-				frame.getContentPane().add(productsName);	
+				frame.getContentPane().add(productsName);
 				xposition = xposition + 50;
 			
 			}
@@ -258,7 +259,7 @@ public class FinalScreenProductsList {
 		JButton nextBtn = new JButton("Gerar");
 		nextBtn.addActionListener(e -> Compile());
 		nextBtn.setFont(new Font("Chilanka", Font.BOLD, 14));
-		nextBtn.setBounds(1020 - 117 - 30, 800 - 40 -58, 117, 40);
+		nextBtn.setBounds(1020 - 117 - 30, 120 - 40 -58, 117, 40);
 		frame.add(nextBtn);
 	}
 
@@ -266,49 +267,49 @@ public class FinalScreenProductsList {
 
 		// Generation the code
 		try {
-			MavenProjectGenerator generator = new MavenProjectGenerator(Paths.get(".\\out\\"));
+			MavenProjectGenerator generator = new MavenProjectGenerator(Paths.get("./out/"));
 			generator
 					.Cleanup()
 					.AddEssentials();
-
-
+			
 			product.features.add(Feature.SandwichSteps);
 
 
 			// Adding Variants
 			// Product Drink
 			if (product.features.contains(Feature.Drink)){
-				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\Drink.java");
+				generator.AddFile("src/main/java/sandwich/spl/variants/product/Drink.java");
 			}
 			// Product Additional
 			if (product.features.contains(Feature.Additional)){
-				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\Additional.java");
+				generator.AddFile("src/main/java/sandwich/spl/variants/product/Additional.java");
 			}
 
 			// Anny Product Manufacture Step
 			if (product.features.contains(Feature.SandwichSteps) ||
 					product.features.contains(Feature.DrinkSteps) ||
 					product.features.contains(Feature.AdditionalSteps)) {
-//				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\ProductItem.java");
-//				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\ProductManufactureStep.java");
+//				generator.AddFile("src/main/java/sandwich/spl/variants/product/step/ProductItem.java");
+//				generator.AddFile("src/main/java/sandwich/spl/variants/product/step/ProductManufactureStep.java");
 			}
 			// Product Steps for Sandwich
 			if (product.features.contains(Feature.SandwichSteps)) {
-				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\SandwichStep.java");
+				generator.AddFile("src/main/java/sandwich/spl/variants/product/step/SandwichStep.java");
 			}
 			// Product Steps for Drink
 			if (product.features.contains(Feature.DrinkSteps)) {
-				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\DrinkStep.java");
+				generator.AddFile("src/main/java/sandwich/spl/variants/product/step/DrinkStep.java");
 			}
 			// Product Steps for Additional
 			if (product.features.contains(Feature.AdditionalSteps)) {
-				generator.AddFile("src\\main\\java\\sandwich\\spl\\variants\\product\\step\\AdditionalStep.java");
+				generator.AddFile("src/main/java/sandwich/spl/variants/product/step/AdditionalStep.java");
 			}
 
 			// Save products (just as example really)
 			product.serializeToFile(generator.getPath().resolve("data.json").toFile());
 
 			generator
+					.Compile(Paths.get(FirstWindow.mavenPath))
 					.Compile(Paths.get(FirstWindow.mavenPath))
 					.Execute();
 

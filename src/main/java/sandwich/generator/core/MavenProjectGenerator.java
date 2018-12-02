@@ -24,11 +24,11 @@ public class MavenProjectGenerator {
 
   public MavenProjectGenerator AddEssentials() throws IOException {
     // Copy Maven project essentials
-    AddFile(projectPath.resolve("src\\main\\resources\\templates\\pom.xml"), this.path.resolve("pom.xml"));
+    AddFile(projectPath.resolve("src/main/resources/templates/pom.xml"), this.path.resolve("pom.xml"));
     // Copy Project core + shared
-    AddFile("src\\main\\java\\sandwich\\shared");
-    AddFile("src\\main\\java\\sandwich\\spl\\cli");
-    AddFile("src\\main\\java\\sandwich\\spl\\core");
+    AddFile("src/main/java/sandwich/shared");
+    AddFile("src/main/java/sandwich/spl/cli");
+    AddFile("src/main/java/sandwich/spl/core");
     return this;
   }
 
@@ -95,4 +95,11 @@ public class MavenProjectGenerator {
 
   private final Path projectPath = Paths.get(System.getProperty("user.dir"));
 
+    public Path getPath() {
+        return path;
+    }
+
+    public void setPath(Path path) {
+        this.path = path;
+    }
 }

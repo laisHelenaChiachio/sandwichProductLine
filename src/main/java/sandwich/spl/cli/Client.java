@@ -23,8 +23,8 @@ import sandwich.spl.core.product.step.IProductManufactureStep;
 
 public class Client {
 
-  private final static String DatabaseFilePath = ".\\data.json";
-  private final static String AltDatabaseFilePath = ".\\out\\data.json";
+  private final static String DatabaseFilePath = ".//data.json";
+  private final static String AltDatabaseFilePath = ".//out//data.json";
 
   private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
